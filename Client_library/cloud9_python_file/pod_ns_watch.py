@@ -44,7 +44,7 @@ def main():
     jsonStringpod = json.dumps(pods)
     #print("Finished pod stream.")
     
-    return jsonStringpod
+    return jsonStringpod,jsonString
         
 
 if __name__ == '__main__':
