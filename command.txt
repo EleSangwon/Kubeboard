@@ -9,20 +9,6 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 
-# Install jq, envsubst (from GNU gettext utilities) and bash-completion
-Install jq, envsubst (from GNU gettext utilities) and bash-completion
-
-#Install yq for yaml processing
-echo 'yq() {
-  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
-}' | tee -a ~/.bashrc && source ~/.bashrc
-
-#Verify the binaries are in the path and executable
-for command in kubectl jq envsubst aws
-  do
-    which $command &>/dev/null && echo "$command in path" || echo "$command NOT FOUND"
-  done
-
 # Kubectl autocomplete
 source <(kubectl completion bash)
 echo "source <(kubectl completion bash)" >> ~/.bashrc
@@ -49,6 +35,3 @@ AdministratorAccess 권한있는 IAM 역할 할당
 Cloud9에서, 오른쪽 상단 톱니바퀴(설정) 클릭
 AWS Settings 선택 --> Credentials turn off
 
-# Env variable
-export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-export AZS=($(aws ec2 describe-availability-zones --query 'AvailabilityZones[].ZoneName' --output text --region $AWS_REGION))
