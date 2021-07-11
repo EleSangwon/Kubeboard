@@ -33,6 +33,7 @@ pod_list.yaml 에 volumes 설정을 하면 Bound 된다.
 ![3](https://user-images.githubusercontent.com/50174803/125182282-b6a8c000-e247-11eb-9d3f-66a9bca83737.PNG)
 
 #5. 테스트를 위해 프론트 앱은 nginx 를 이용한다
+
 #5-1. 이때, 같은 볼륨에 접근해야 하므로 volumeMounts의 값은 클라이언트 라이브러리 앱과 동일하게 한다.
 ![4](https://user-images.githubusercontent.com/50174803/125182302-e48e0480-e247-11eb-98d7-27639c06f284.png)
 
