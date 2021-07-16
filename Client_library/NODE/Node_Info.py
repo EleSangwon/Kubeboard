@@ -8,7 +8,7 @@ def main():
     )
     api = client.resources.get(api_version="v1", kind="Node")
     Nodes_info=[]
-    
+
     for item in api.get().items:
         node = api.get(name=item.metadata.name)
         jsonString= json.dumps({"NAME":node.metadata.name,"STATUS":node.status.conditions[3]["type"],"VERSION":node.status.nodeInfo.kubeProxyVersion,"OSImage":node.status.nodeInfo.osImage})
