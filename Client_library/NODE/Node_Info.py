@@ -7,6 +7,7 @@ def main():
         api_client.ApiClient(configuration=config.load_incluster_config())
     )
     api = client.resources.get(api_version="v1", kind="Node")
+
     Nodes_info=[]
 
     for item in api.get().items:
