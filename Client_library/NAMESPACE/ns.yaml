@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nsinfo
+  namespace: client-library
+  labels:
+    app: clientlibrary-ns-list
+spec:
+  volumes:
+  - name: client-library-data
+    persistentVolumeClaim:
+      claimName: clientlibraryclaim
+  containers:
+  - name: nodeinfo
+    image: sangwondockerhub/ns_info
+    command: ["sh","-c"]
+    args: ["python ns.py > /client-resource/NS_Info.json"]
+    volumeMounts:
+    - name: client-library-data
+      mountPath: /client-resource
+  restartPolicy: Never
+  
