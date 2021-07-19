@@ -1,5 +1,7 @@
 # Kubernetes-Enterprise-Log-Analysis-System
 
+## 프로젝트 기간 21.04.13 ~ (현재 진행 중)
+
 ## 프로젝트 내용
 ```
 쿠버네티스 기반 수 많은 애플리케이션에 대한 로그시스템을 구축하여 
