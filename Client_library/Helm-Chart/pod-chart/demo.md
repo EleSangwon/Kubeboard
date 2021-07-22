@@ -56,3 +56,29 @@ Completed 되어 exec 접근이 안된다.
 ``` 
 ![helm-test1](https://user-images.githubusercontent.com/50174803/126628731-836134f2-8854-4db4-af60-db44e3c14ba2.PNG)
 ![helm-test2](https://user-images.githubusercontent.com/50174803/126628746-6d1b4499-1f7e-4f12-a05b-e1fd5f6bf11f.PNG)
+
+# 2. YAML File
+
+## values.yaml
+![helm-test3](https://user-images.githubusercontent.com/50174803/126629149-36a0725a-1b47-43f2-bf0d-b86d7da5d20e.PNG)
+
+## PV,PVC.yaml
+![helm-test4](https://user-images.githubusercontent.com/50174803/126629220-05af7fc3-ccbb-48e5-80ee-b42e5415f649.png)
+
+```
+PV&PVC는, Status bound가 되면 helm upgrade 명렁어를 실행시켜도
+결과가 업데이트 되지 않을 수 있으므로
+uninstall 하고 사용해야 한다.
+```
+## configmap.yaml & Clusterrole.yaml
+![helm-test5](https://user-images.githubusercontent.com/50174803/126629380-b47b5595-590c-45a9-888c-c99935829f19.png)
+```
+configmap은 deployment에 변화가 생겼을 떄 컨테이너의 이미지 네임이 동일하다면
+파드가 재시작되지 않으므로 configmap에 암호화를 해서 해당 값이 변할 떄마다 파드가 재시작되도록 하기위해
+추가했다. deployment에 annotations을 아직 적용하진 않았음.
+아래 사진처럼 추가할 예정
+```
+![helm-test7](https://user-images.githubusercontent.com/50174803/126629946-0854eb54-7c03-4b4c-81f4-0fcbdab1849a.PNG)
+
+## deployment.yaml
+![helm-test6](https://user-images.githubusercontent.com/50174803/126629992-97823097-84f0-46bd-b4d7-4a1759475087.PNG)
