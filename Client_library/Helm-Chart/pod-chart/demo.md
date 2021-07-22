@@ -54,3 +54,5 @@ Completed 되어 exec 접근이 안된다.
 [exec 명령어로 컨테이너에 존재하는 값 확인]
 
 ``` 
+![helm-test1](https://user-images.githubusercontent.com/50174803/126628731-836134f2-8854-4db4-af60-db44e3c14ba2.PNG)
+![helm-test2](https://user-images.githubusercontent.com/50174803/126628746-6d1b4499-1f7e-4f12-a05b-e1fd5f6bf11f.PNG)
