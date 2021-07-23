@@ -11,8 +11,8 @@
 
 ## 기술스택
 ```
-Kubernetes - 컨테이너 오케스트레이션 : AWS EKS , Python Client Library
-
+Kubernetes - 컨테이너 오케스트레이션 : AWS EKS ,Python Client Library
+Helm - 쿠버네티스 패키지 매니저
 Docker - 컨테이너 이미지 , Public Repository Dockerhub 사용 ( AWS ECR 도 고려중 ) 
 
 Loki & Grafana & Fluentd - 로깅 아키텍처 
