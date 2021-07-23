@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-node-info
+ # namespace: client-library
+  labels:
+    app: deployment-node-info
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-node-info
+  template:
+    metadata:
+      labels:
+        app: deployment-node-info
+    spec:
+      volumes:
+      - name: hanium-2021-pv
+        persistentVolumeClaim:
+          claimName: hanium-2021-pvc
+      containers:
+      - name: nodeinfo
+        image: sangwondockerhub/node_info
+        command: ["sh","-c"]
+        args: ["python Node_Info.py > /client-resource/Node_Info.json"]
+        volumeMounts:
+        - name: hanium-2021-pv
+          mountPath: /client-resource
+    
