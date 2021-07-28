@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.logreportname }}
+  #namespace: {{ .Values.frontendns }}
+  labels:
+    app: {{ .Values.logreportname }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.logreportname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.logreportname }}
+    spec:
+      volumes:
+      - name: {{ .Values.volumename }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.volumeclaimName }}
+      containers:
+      - name: {{ .Values.frontendname }}
+        image: {{ .Values.frontendimage }}
+        volumeMounts:
+        - name: {{ .Values.volumename }}
+          mountPath: {{ .Values.mountPath }}
