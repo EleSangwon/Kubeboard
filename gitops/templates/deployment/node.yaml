@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Values.nodename }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.nodename }}
@@ -23,7 +23,7 @@ spec:
       - name: {{ .Values.nodename }}
         image: {{ .Values.nodeimage }}
         command: ["sh","-c"]
-        args: ["python Node_Info.py > /client-resource/Node_Info.json"]
+        args: ["python Node.py > /client-resource/node_resource.json"]
         volumeMounts:
         - name: {{ .Values.volumename }}
           mountPath: {{ .Values.mountPath }}

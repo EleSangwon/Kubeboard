@@ -8,17 +8,17 @@ volumename: hanium-2021-pv
 volumeclaimName: hanium-2021-pvc
 mountPath: /client-resource
 ## Client Pod Resource
-podname: deployment-pod-list
-podimage: sangwondockerhub/pod_list
+podname: deployment-pod-resource
+podimage: public.ecr.aws/b2t5b6j7/pod_resource:latest
 # Client Node Resource
-nodename: deployment-node-info
-nodeimage: sangwondockerhub/node_info
+nodename: deployment-node-resource
+nodeimage: public.ecr.aws/b2t5b6j7/node_resource:latest
 # Client NS Resource
-nsimage: sangwondockerhub/ns_info
-nsname: deployment-ns-info
+nsimage: public.ecr.aws/b2t5b6j7/ns_resource:latest
+nsname: deployment-ns-resource
 # Client SVC Resource
-svcimage: sangwondockerhub/service_info
-svcname: deployment-service-info
+svcimage: public.ecr.aws/b2t5b6j7/service_resource:latest
+svcname: deployment-service-resource
 # SVC Client 
 frontendname: nginx-test
 frontendimage: nginx
