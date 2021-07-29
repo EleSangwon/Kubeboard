@@ -6,7 +6,11 @@ metadata:
   labels:
     app: {{ .Values.firstpage }}
 spec:
+<<<<<<< HEAD
   replicas: {{ .Values.replicas }}
+=======
+  replicas: 3
+>>>>>>> dd18ce3ad1461e55d10a1e39f477deec412c40a6
   selector:
     matchLabels:
       app: {{ .Values.firstpage }}
