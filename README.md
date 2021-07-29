@@ -12,7 +12,9 @@
 ## 기술스택
 ```
 Kubernetes - 컨테이너 오케스트레이션 : AWS EKS ,Python Client Library
+
 Helm - 쿠버네티스 패키지 매니저
+
 Docker - 컨테이너 이미지 , Public Repository Dockerhub 사용 ( AWS ECR 도 고려중 ) 
 
 Loki & Grafana & Fluentd - 로깅 아키텍처 
@@ -24,6 +26,8 @@ AWS - 퍼블릭 클라우드 플랫폼
 - S3 - 파일 스토리지
 - Route53 - 도메인 연결 및 라우팅 정책 할당
 - EKS : 관리형 쿠버네티스
+
+CD - ArgoCD
 
 Frontend - React, html, css 
 ```
