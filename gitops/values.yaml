@@ -1,0 +1,37 @@
+replicas: 1
+version: 'latest'
+
+# Hanium 2021 Kubernetes
+
+## Volume
+volumename: hanium-2021-pv
+volumeclaimName: hanium-2021-pvc
+mountPath: /client-resource
+## Client Pod Resource
+podname: deployment-pod-list
+podimage: sangwondockerhub/pod_list
+# Client Node Resource
+nodename: deployment-node-info
+nodeimage: sangwondockerhub/node_info
+# Client NS Resource
+nsimage: sangwondockerhub/ns_info
+nsname: deployment-ns-info
+# Client SVC Resource
+svcimage: sangwondockerhub/service_info
+svcname: deployment-service-info
+# SVC Client 
+frontendname: nginx-test
+frontendimage: nginx
+frontsvc: nginx-test
+frontendns: frontend
+# SVC Log Report
+logreportname: log-report
+logsvc: log-report-svc
+# SVX Main
+firstpage: nginx-main 
+firstsvc: main-svc
+# Ingress
+ingressname: hanium-ingress
+ingresspathone: /cluster-info/
+ingresspathtwo: /log-report/
+ingresspathany: /*

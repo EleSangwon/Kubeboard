@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.podname }}
+  labels:
+    app: {{ .Values.podname }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.podname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.podname }}
+    spec:
+      volumes:
+      - name: {{ .Values.volumename }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.volumeclaimName }}
+      containers:
+      - name: {{ .Values.podname }}
+        image: {{ .Values.podimage }}
+        command: ["sh","-c"]
+        args: ["python pod_list.py > /client-resource/Pod_list.json"]
+        volumeMounts:
+        - name: {{ .Values.volumename }}
+          mountPath: {{ .Values.mountPath }}
+    
