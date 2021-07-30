@@ -1,4 +1,4 @@
-replicas: 3
+replicas: 1
 version: 'latest'
 
 # Hanium 2021 Kubernetes
