@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.svcname }}
+#  namespace: client-library
+  labels:
+    app: {{ .Values.svcname }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.svcname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.svcname }}
+    spec:
+      volumes:
+      - name: {{ .Values.volumename }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.volumeclaimName }}
+      containers:
+      - name: {{ .Values.svcname }}
+        image: {{ .Values.svcimage }}
+        command: ["sh","-c"]
+        args: ["python service.py > /client-resource/service_Info.json"]
+        volumeMounts:
+        - name: {{ .Values.volumename }}
+          mountPath: {{ .Values.mountPath }}
+    
