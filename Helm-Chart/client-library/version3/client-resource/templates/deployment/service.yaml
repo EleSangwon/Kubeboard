@@ -23,7 +23,7 @@ spec:
       - name: {{ .Values.svcname }}
         image: {{ .Values.svcimage }}
         command: ["sh","-c"]
-        args: ["python service.py > /client-resource/service_Info.json"]
+        args: ["python service.py > /client-resource/service_resource.json"]
         volumeMounts:
         - name: {{ .Values.volumename }}
           mountPath: {{ .Values.mountPath }}

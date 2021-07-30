@@ -22,7 +22,7 @@ spec:
       - name: {{ .Values.podname }}
         image: {{ .Values.podimage }}
         command: ["sh","-c"]
-        args: ["python pod_list.py > /client-resource/Pod_list.json"]
+        args: ["python pod_resource.py > /client-resource/pod_resource.json"]
         volumeMounts:
         - name: {{ .Values.volumename }}
           mountPath: {{ .Values.mountPath }}

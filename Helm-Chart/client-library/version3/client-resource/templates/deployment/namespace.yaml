@@ -23,7 +23,7 @@ spec:
       - name: {{ .Values.nsname }}
         image: {{ .Values.nsimage }}
         command: ["sh","-c"]
-        args: ["python ns.py > /client-resource/ns_Info.json"]
+        args: ["python ns.py > /client-resource/ns_resource.json"]
         volumeMounts:
         - name: {{ .Values.volumename }}
           mountPath: {{ .Values.mountPath }}
