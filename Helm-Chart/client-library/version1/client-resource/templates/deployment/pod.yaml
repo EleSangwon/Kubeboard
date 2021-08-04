@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-pod-list
+#  namespace: client-library
+  labels:
+    app: deployment-pod-list
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-pod-list
+  template:
+    metadata:
+      labels:
+        app: deployment-pod-list
+    spec:
+      volumes:
+      - name: hanium-2021-pv
+        persistentVolumeClaim:
+          claimName: hanium-2021-pvc
+      containers:
+      - name: podlist
+        image: sangwondockerhub/pod_list
+        command: ["sh","-c"]
+        args: ["python pod_list.py > /client-resource/Pod_list.json"]
+        volumeMounts:
+        - name: hanium-2021-pv
+          mountPath: /client-resource
+    

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-service-info
+  namespace: client-library
+  labels:
+    app: deployment-sevice-info
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deployment-service-info
+  template:
+    metadata:
+      labels:
+        app: deployment-service-info
+    spec:
+      volumes:
+      - name: client-library-data
+        persistentVolumeClaim:
+          claimName: clientlibraryclaim
+      containers:
+      - name: serviceinfo
+        image: sangwondockerhub/service_info
+        command: ["sh","-c"]
+        args: ["python service.py > /client-resource/service_Info.json"]
+        volumeMounts:
+        - name: client-library-data
+          mountPath: /client-resource
+    

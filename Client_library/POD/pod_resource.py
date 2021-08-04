@@ -2,7 +2,7 @@ from kubernetes import client, config
 import json
 import boto3
 
-config.load_incluster_config()
+config.load_kube_config()
 v1 = client.CoreV1Api()
 ret = v1.list_pod_for_all_namespaces(watch=False)
 pods_info=[]
@@ -12,7 +12,7 @@ for i in ret.items:
         pods_info.append(jsonString)
 
 print(pods_info)
-# List 형태로 Json 저장
+# List 형태로 Json 저장 
 
 #for val in pods_info:
 #    print(val)

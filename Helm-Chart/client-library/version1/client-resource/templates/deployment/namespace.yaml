@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-ns-info
+ # namespace: client-library
+  labels:
+    app: deployment-ns-info
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-ns-info
+  template:
+    metadata:
+      labels:
+        app: deployment-ns-info
+    spec:
+      volumes:
+      - name: hanium-2021-pv
+        persistentVolumeClaim:
+          claimName: hanium-2021-pvc
+      containers:
+      - name: nsinfo
+        image: sangwondockerhub/ns_info
+        command: ["sh","-c"]
+        args: ["python ns.py > /client-resource/ns_Info.json"]
+        volumeMounts:
+        - name: hanium-2021-pv
+          mountPath: /client-resource
+    

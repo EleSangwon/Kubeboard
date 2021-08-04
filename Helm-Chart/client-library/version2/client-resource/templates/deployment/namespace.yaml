@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.nsname }}
+ # namespace: client-library
+  labels:
+    app: {{ .Values.nsname }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.nsname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.nsname }}
+    spec:
+      volumes:
+      - name: {{ .Values.volumename }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.volumeclaimName }}
+      containers:
+      - name: {{ .Values.nsname }}
+        image: {{ .Values.nsimage }}
+        command: ["sh","-c"]
+        args: ["python ns.py > /client-resource/ns_Info.json"]
+        volumeMounts:
+        - name: {{ .Values.volumename }}
+          mountPath: {{ .Values.mountPath }}
+    

@@ -1,0 +1,37 @@
+replicas: 1
+version: 'latest'
+
+# Hanium 2021 Kubernetes
+
+## Volume
+volumename: hanium-2021-pv
+volumeclaimName: hanium-2021-pvc
+mountPath: /client-resource
+## Client Pod Resource
+podname: deployment-pod-resource
+podimage: public.ecr.aws/b2t5b6j7/pod_resource:latest
+# Client Node Resource
+nodename: deployment-node-resource
+nodeimage: public.ecr.aws/b2t5b6j7/node_resource:latest
+# Client NS Resource
+nsimage: public.ecr.aws/b2t5b6j7/ns_resource:latest
+nsname: deployment-ns-resource
+# Client SVC Resource
+svcimage: public.ecr.aws/b2t5b6j7/service_resource:latest
+svcname: deployment-service-resource
+# SVC Client 
+frontendname: nginx-test
+frontendimage: nginx
+frontsvc: nginx-test
+frontendns: frontend
+# SVC Log Report
+logreportname: log-report
+logsvc: log-report-svc
+# SVX Main
+firstpage: nginx-main 
+firstsvc: main-svc
+# Ingress
+ingressname: hanium-ingress
+ingresspathone: /cluster-info/
+ingresspathtwo: /log-report/
+ingresspathany: /*

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podtest
+  namespace: default
+  labels:
+    app: sangwon-test
+spec:
+  #volumes:
+ # - name: shared-data
+  #  persistentVolumeClaim:
+   #   claimName: clientlibraryclaim
+  volumes:
+     - name: hanium-2021-pv
+       persistentVolumeClaim:
+         claimName: hanium-2021-pvc
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: hanium-2021-pv
+      mountPath: /client-resource
+  #  volumeMounts:
+  #  - name: shared-data
+  #    mountPath: /app-data
+  
+  

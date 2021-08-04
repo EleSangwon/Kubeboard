@@ -48,7 +48,7 @@ index.html에 넣는다
 ![6](https://user-images.githubusercontent.com/50174803/125182396-ac3af600-e248-11eb-8b79-fd48b29151b5.PNG)
 
 #5-4. 결과를 확인하기 위해 프론트 앱을 서비스로 만든다(expose pod) , type=LoadBalancer
-![7](https://user-images.githubusercontent.com/50174803/125182426-eefcce00-e248-11eb-8ed3-75087b7bef03.PNG)
+![11](https://user-images.githubusercontent.com/50174803/125182758-b3173800-e24b-11eb-99c8-acae576d64d4.PNG)
 
 #6. 결과를 확인
 

@@ -1,0 +1,22 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: clientlibrary-node-info
+  #namespace: client-library
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["*"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: clientlibrary-node-info
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: client-library
+roleRef:
+  kind: ClusterRole
+  name: clientlibrary-node-info
+  apiGroup: rbac.authorization.k8s.io

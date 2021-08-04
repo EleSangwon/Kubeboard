@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: servicetest
+  namespace: client-library
+  labels:
+    app: clientlibrary-service-info
+spec:
+  volumes:
+  - name: shared-data
+    persistentVolumeClaim:
+      claimName: clientlibraryclaim
+  containers:
+  - name: servicetest
+    image: sangwondockerhub/service_info
+    command: ["python","service.py"]
+    #args: ["python pod_list.py > /app-data/pod_resource.txt"]
+    volumeMounts:
+    - name: shared-data
+      mountPath: /client-resource
+  restartPolicy: Never
+  

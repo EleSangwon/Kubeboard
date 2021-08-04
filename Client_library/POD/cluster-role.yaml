@@ -1,0 +1,22 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: clientlibrary-pods-list
+  namespace: client-library
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["*"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: clientlibrary-pods-list
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: client-library
+roleRef:
+  kind: ClusterRole
+  name: clientlibrary-pods-list
+  apiGroup: rbac.authorization.k8s.io

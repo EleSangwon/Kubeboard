@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hanium-2021-pvc
+  #namespace: client-library
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1G
+  storageClassName: ""
+  selector:
+    matchLabels:
+      name: hanium-2021-pv

@@ -1,0 +1,12 @@
+replicas: 1
+version: 'latest'
+
+# Service Specific Values
+pod:
+  image: sangwondockerhub/pod_list
+node:
+  image: sangwondockerhub/node_info
+namespsace:
+  image: sangwondockerhub/ns_info
+service:
+  image: sangwondockerhub/service_info
