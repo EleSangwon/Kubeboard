@@ -1,0 +1,28 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.cronjobns }}
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+          - name: {{ .Values.volumename }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.volumeclaimName }}
+          restartPolicy: OnFailure
+          containers:
+          - name: {{ .Values.nsname }}
+            image: {{ .Values.nsimage }}
+            resources:
+              requests:
+                cpu: {{ .Values.cpu }}
+                memory: {{ .Values.memory }}
+            command: ["sh","-c"]
+            args: ["python ns.py > /client-resource/ns_resource.json"]
+            volumeMounts:
+            - name: {{ .Values.volumename }}
+              mountPath: {{ .Values.mountPath }}
+    
