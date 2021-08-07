@@ -83,8 +83,8 @@ Loki + Grafana + Promtail : 세팅 완
 볼륨은, 클라이언트 라이브러리로 가져오는 방법이 아니다.
 
 kubectl get pv,pvc -A 명령어로 가져온 결과를 
-cronjob으로 실행해서 db에 저장하거나 s3에 저장하고
-알맞게 json으로 가공해서 보여주도록 해야함
+쉘 스크립트로 cronjob 시키고 클러스터 내 statefulset 인 db에 저장하거나 
+s3에 저장하고 알맞게 json으로 가공해서 보여주도록 해야함
 
 2. Prometheus , loki 에 대한 ingress 접근
 
