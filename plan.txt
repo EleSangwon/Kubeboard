@@ -2,4 +2,108 @@ git config Changed
 
 Author Cloudsangwon -> EleSangwon 
 
+< 진행 현황 >
+2021.08.05(기준)
+
+[클라이언트 라이브러리]
+
+1. AWS Cloud9 & EKS 환경 세팅 - 완
+
+2. Client library Python Code - 완
+
+3. Image 생성 (이미지 레포지토리 도커허브 -> AWS ECR ) - 완
+
+4. Image 기반 Pod, deployment 생성 --> Kind:CronJob 으로 변경 - 완
+
+5. Client library - Pod, Node, Service, Namespace - 완 
+
+6. Helm Chart - 완
+ 
+* template - cronjob
+* template - deployment 
+* template - service
+* template - rbac,pv,pvc,ingress
+values.yaml
+
+7. label 설정 - 완
+cronjob: dev, deploy: dev
+(멀티 클러스터를 운영할 지는 미정)
+
+8. Argocd - 완
+
+* argocd install & setting
+* argocd 로 helm chart 배포
+* rollback 
+
+9. Ingress - 완
+service : log-report, service : frontend 에 대해
+멀티패스로 연결 테스트 완료
+
+실적용 미완 (프론트 개발 시 완성)
+
+10. Domain 에 LB 연결 - 완
+Ingress controller alb와 구매한 도메인 연결
+
+ex) www.exam.com 라는 도메인을 가지고 있는 경우,
+service 를 ingress로 연결하면
+
+www.exam.com/log-report --> 해당 도메인에서 log-report라는 서비스에
+접근가능
+
+www.exam.com/frontend --> 해당 도메인에서 frontend 서비스에 
+접근 가능
+
+[ 모니터링 ]
+
+Prometheus + Grafana : 세팅 완
+
+[ 로키 : 로깅 ]
+
+Loki + Grafana + Promtail : 세팅 완
+
+--------------------------------------------------------
+
+[ 필수로 추가해야 하는 부분 ]
+
+1. CI : Jenkins + CD : Argocd 로 구성하기
+현재는 CD만 완료
+
+2. 로그 리포트 웹페이지 만들기
+
+- 집계한 로그를 어디로 export 할 지 (aws S3 ? )
+
+- 로그를 모으면 어떤 로그를 추출해서 시각화할 지
+
+- 로그 분석 리포트가 제공해주는 기능 명세서 작성
+
+[ 추가하면 좋은 부분 ]
+
+1. 볼륨의 세부정보 추가
+
+볼륨은, 클라이언트 라이브러리로 가져오는 방법이 아니다.
+
+kubectl get pv,pvc -A 명령어로 가져온 결과를 
+쉘 스크립트로 cronjob 시키고 클러스터 내 statefulset 인 db에 저장하거나 
+s3에 저장하고 알맞게 json으로 가공해서 보여주도록 해야함
+
+2. Prometheus , loki 에 대한 ingress 접근
+
+www.exam.com/prometheus, www.exam.com/loki 등으로 접근
+grafana.ini 와 helm chart를 분석해서 시도해봤지만, 
+연결이 되지 않아 못할 가능성 높다.
+
+3. Domain 접근시 http로 접근하므로 https 로 접근 설정
+
+프로젝트 마감일까지 시간이 남으면 시도
+
+4. Pod Autoscaler 설정
+
+Pod에 트래픽이 몰리면 로드밸런서 역할을 할 수 있도록
+레플리카 개수를 증가하도록 설정 (helm -values 에서 설정해야할 듯)
+
+5. 비용 최적화
+
+kubecost 
+
+
 
