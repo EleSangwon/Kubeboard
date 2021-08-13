@@ -1,0 +1,53 @@
+<%- include("partials/header"); -%>
+    <link rel="stylesheet" href="css/sidebar.css">
+    </head>
+
+    <body id="bootstrap-overrides">
+        <main role="main">
+            <div class="wrapper d-flex align-items-stretch">
+                <%- include("partials/sidebar"); -%>
+                    <!-- Page Content  -->
+                    <div id="content" class="p-4 p-md-5 pt-5">
+                        <div class="container-fluid">
+                            <div class = row>
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">kind</th>
+                                        <th scope="col">name</th>
+                                        <th scope="col">status</th>
+                                        <th scope="col">podnumber</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row" class="col-1">1</th>
+                                        <td class="col-3">kind</td>
+                                        <td class="col-3">name</td>
+                                        <td class="col-3">status</td>
+                                        <td class="col-3">podnumber</td> <!--for문으로 namespace 갯수 만큼 나오게 하기-->
+                                      </tr>
+                                      <tr>
+                                        <th scope="row" class="col-1">1</th>
+                                        <td class="col-3">kind</td>
+                                        <td class="col-3">name</td>
+                                        <td class="col-3">status</td>
+                                        <td class="col-3">podnumber</td> <!--for문으로 namespace 갯수 만큼 나오게 하기-->
+                                      </tr>
+                                      <tr>
+                                        <th scope="row" class="col-1">1</th>
+                                        <td class="col-3">kind</td>
+                                        <td class="col-3">name</td>
+                                        <td class="col-3">status</td>
+                                        <td class="col-3">podnumber</td> <!--for문으로 namespace 갯수 만큼 나오게 하기-->
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </main>
+    </body>
+</html>
