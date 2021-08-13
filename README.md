@@ -15,9 +15,9 @@ Kubernetes - 컨테이너 오케스트레이션 : AWS EKS ,Python Client Library
 
 Helm - 쿠버네티스 패키지 매니저
 
-Docker - 컨테이너 이미지 , Public Repository Dockerhub 사용 ( AWS ECR 도 고려중 ) 
+Docker - 컨테이너 이미지 , Public Repository AWS ECR ( 제한 때문에 dockerhub 사용 X ) 
 
-Loki & Grafana & Fluentd - 로깅 아키텍처 
+Loki & Grafana & Promtail - 로깅 아키텍처 
 
 Prometheus & Grafana - 인프라 리소스 시각화
 
@@ -28,6 +28,8 @@ AWS - 퍼블릭 클라우드 플랫폼
 - EKS : 관리형 쿠버네티스
 
 CD - ArgoCD
+
+shell-script : 설치해야 하는 라이브러리 및 파일 자동화
 
 Frontend - React, html, css 
 ```
