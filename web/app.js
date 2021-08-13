@@ -20,9 +20,8 @@ app.use(cors());
 app.get("/", function (req, res) {
     res.redirect("/home");
 });
-
-app.get("/home", info.podInfo);
 app.get("/home", info.nodeInfo);
+app.get("/home", info.podInfo);
 
 
 app.get("/logging", function (req, res) {
