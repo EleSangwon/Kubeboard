@@ -154,8 +154,8 @@ volumes:
 # Custom volumes together with the default ones
 extraVolumes: 
   - name: journal
-    mountPath: /var/log/journal
-    readOnly: true
+    hostPath:
+      path: /var/log/journal
 
 volumeMounts:
 - name: docker
@@ -167,7 +167,7 @@ volumeMounts:
 
 # Custom volumeMounts together with the default ones
 extraVolumeMounts: 
- - name: journal
+  - name: journal
     mountPath: /var/log/journal
     readOnly: true
 
