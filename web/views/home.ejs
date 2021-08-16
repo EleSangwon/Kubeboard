@@ -1,0 +1,135 @@
+<%- include("partials/header"); -%>
+  <link rel="stylesheet" href="css/sidebar.css">
+  </head>
+
+  <body id="bootstrap-overrides">
+    <main role="main">
+      <div class="wrapper d-flex align-items-stretch">
+        <%- include("partials/sidebar"); -%>
+          <!-- Page Content  -->
+          <div id="content" class="p-4 p-md-5 pt-5">
+            <div class = "container-fluid">
+              <div class="row">
+                <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
+                  <div class="card-body">
+                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">컨테이너</h3>
+                  </div>
+                </div>
+                <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
+                  <div class="card-body">
+                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">이미지</h3>
+                  </div>
+                </div>
+                <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
+                  <div class="card-body">
+                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">네트워크</h3>
+                  </div>
+                </div>
+                <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
+                  <div class="card-body">
+                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">볼륨</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-5 mx-3">
+                <span>노드 정보</span>
+                <div>
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="col-2 text-center">이름</th>
+                        <td>Node 이름</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Docker 버전</th>
+                        <td class="col-8">Docker 버전</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Node CPU</th>
+                        <td>Node CPU</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Node Memory</th>
+                        <td>Node Memory</td> <!-- 추후 바뀔 수 있음 -->
+                      </tr>
+                    </tbody>
+                  </table>                  
+                </div>
+              </div>
+              <div class="pt-5 mx-3">
+                <span>Engine 정보</span>
+                <div>
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="col-2 text-center">Version</th>
+                        <td>도커 버전 들어갈 예정</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">API Version</th>
+                        <td class="col-8">API 버전 들어갈 예정</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Python Version</th>
+                        <td>3.9.6</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">OS Type</th>
+                        <td><%= ostype%></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">OS</th>
+                        <td><%= osplatform %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Architecture</th>
+                        <td><%= osarch %></td>
+                      </tr>
+                    </tbody>
+                  </table>                  
+                </div>
+              </div>
+              <div class="pt-5 mx-3">
+                <span>Service 정보</span>
+                <div>
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="col-2 text-center">Namespace</th>
+                        <td>Namespace</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Name</th>
+                        <td class="col-8">Name</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">HostName</th>
+                        <td>HostName</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Protocol</th>
+                        <td>Protocol</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Nodeport</th>
+                        <td>Nodeport</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="text-center">Targetport</th>
+                        <td>TargetPort</td>
+                      </tr>
+                    </tbody>
+                  </table>                  
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </main>
+  </body>
+
+  </html>

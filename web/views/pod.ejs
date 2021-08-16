@@ -1,0 +1,57 @@
+<%- include("partials/header"); -%>
+    <link rel="stylesheet" href="css/sidebar.css">
+    </head>
+
+    <body id="bootstrap-overrides">
+        <main role="main">
+            <div class="wrapper d-flex align-items-stretch">
+                <%- include("partials/sidebar"); -%>
+                    <!-- Page Content  -->
+                    <div id="content" class="p-4 p-md-5 pt-5">
+                        <div class="container-fluid">
+                            <div class = row>
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">namespace</th>
+                                        <th scope="col">name</th>
+                                        <th scope="col">image</th>
+                                        <th scope="col">IP</th>
+                                        <th scope="col">NodeIP</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row" class="col-1">1</th>
+                                        <td class="col-2">namespace</td>
+                                        <td class="col-2">name</td>
+                                        <td class="col-2">image</td>
+                                        <td class="col-2">192.220.33.211</td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                        <td class="col-2">NodeIP</td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                      </tr>
+                                      <tr>
+                                        <th scope="row" class="col-1">1</th>
+                                        <td class="col-2">namespace</td>
+                                        <td class="col-2">name</td>
+                                        <td class="col-2">image</td>
+                                        <td class="col-2">192.220.33.211</td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                        <td class="col-2">NodeIP</td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                      </tr>
+                                      <tr>
+                                        <th scope="row" class="col-1">1</th>
+                                        <td class="col-2">namespace</td>
+                                        <td class="col-2">name</td>
+                                        <td class="col-2">image</td>
+                                        <td class="col-2">192.220.33.211</td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                        <td class="col-2">NodeIP</td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </main>
+    </body>
+</html>
