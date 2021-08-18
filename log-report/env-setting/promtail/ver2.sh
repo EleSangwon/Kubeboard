@@ -27,8 +27,8 @@ for i in $(seq 1 ${daemonset}); do
     anv=${pod}
   fi
 done
-echo ${ans}
-echo ${anv}
+#echo ${ans}
+#echo ${anv}
 
 # Failed below this.I do not know the reason.
 #cnt1=`kubectl exec -it ${ans} -- cat /var/log/pods/${pod}/kube-eventrouter/0.log | grep problem-app | grep error| wc -l`
@@ -36,14 +36,12 @@ echo ${anv}
 # Success below this.
 
 # 6. Number of Pods per Specified Time
-#cnt=`kubectl exec -it dev-promtail-kq74v -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-n799c_a190eb8e-aa94-4fce-a3f3-63679139adc4/kube-eventrouter/0.log | grep problem-app | grep error | wc -l`
-cnt=`kubectl exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-ktxgz_0e74a342-706f-4358-9e13-47cf43ba7958/kube-eventrouter/0.log | grep problem-app | grep error |  wc -l`  ##grep ${Time} | wc -l`
+cnt=`kubectl exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-ktxgz_0e74a342-706f-4358-9e13-47cf43ba7958/kube-eventrouter/0.log | grep problem-app | grep error | grep ${Time} | wc -l`
 #echo "${cnt}"
-#echo "Number "
+
 # 7. Save log for the filtered period in json format
 for i in $(seq 1 ${cnt}); do
-  #contents=`kubectl exec -it dev-promtail-kq74v -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-n799c_a190eb8e-aa94-4fce-a3f3-63679139adc4/kube-eventrouter/0.log | grep problem-app | grep error | head -$i | tail -1 >>log.txt`
-  contents=`kubectl exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-ktxgz_0e74a342-706f-4358-9e13-47cf43ba7958/kube-eventrouter/0.log | grep problem-app | grep error | head -$i | tail -1 >>log.json`  #grep ${Time} | head -$i | tail -1 >>log.json`
+  contents=`kubectl exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-ktxgz_0e74a342-706f-4358-9e13-47cf43ba7958/kube-eventrouter/0.log | grep problem-app | grep error | grep ${Time} | head -$i | tail -1 >>log.json`
   echo "${contents}"
 done
 # 8. Log to s3 bucket
