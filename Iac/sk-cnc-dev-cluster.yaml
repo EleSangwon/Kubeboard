@@ -1,0 +1,24 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: SK-cnt-dev
+  region: ap-northeast-2
+  version: "1.19"
+
+availabilityZones: ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"]
+
+managedNodeGroups:
+- name: sk-node-group
+  desiredCapacity: 1
+  instanceType: t2.micro
+  iam:
+      withAddonPolicies:
+        imageBuilder: true # AWS ECR에 대한 권한 추가
+        albIngress: true  # albIngress에 대한 권한 추가
+        cloudWatch: true # cloudWatch에 대한 권한 추가
+        autoScaler: true # auto scaling에 대한 권한 추가
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
