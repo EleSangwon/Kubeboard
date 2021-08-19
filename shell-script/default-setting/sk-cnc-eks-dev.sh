@@ -47,7 +47,6 @@ echo "Install awscli2 success."
 Iac()
 {
     wget https://raw.githubusercontent.com/EleSangwon/Kubernetes-Enterprise-Log-Analysis-System/main/Iac/sk-cnc-dev-cluster.yaml
-    eksctl create cluster -f create-cluster.yaml
 }
 
 
