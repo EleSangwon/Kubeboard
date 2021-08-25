@@ -9,15 +9,15 @@ volumeclaimName: hanium-2021-pvc
 mountPath: /client-resource
 ## Client Pod Resource
 podname: cr-pod-resource
-podimage: public.ecr.aws/b2t5b6j7/pod_resource:latest
+podimage: 
 # Client Node Resource
 nodename: cr-node-resource
-nodeimage: public.ecr.aws/b2t5b6j7/node_resource:latest
+nodeimage: 
 # Client NS Resource
-nsimage: public.ecr.aws/b2t5b6j7/ns_resource:latest
+nsimage: 
 nsname: cr-ns-resource
 # Client SVC Resource
-svcimage: public.ecr.aws/b2t5b6j7/service_resource:latest
+svcimage:
 svcname: cr-service-resource
 # SVC Client 
 frontendname: nginx-test
