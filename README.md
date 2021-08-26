@@ -53,9 +53,9 @@ Frontend - React, html, css
 ![image](https://user-images.githubusercontent.com/50174803/131027638-bf8b61cf-7873-420f-8c51-e46214350a47.png)
 
 ```
-1. AWS EKS 클러스터 안에서, 생성된 리소스에 대한 로그를 Fluentd에 저장한다
-2. 저장된 값을 Processing 하여 Loki를 이용해 로그를 쿼리 & 저장한다
-3. 그라파나를 통해 Loki의 정보를 시각화 및 분석한다
+1. AWS EKS 클러스터 안에서, 생성된 리소스에 대한 로그를 promtail에 저장한다
+2. 저장된 값을 Loki로 보낸다. 
+3. 그라파나를 통해 Loki의 정보를 시각화 및 분석 (LogQL)한다
 ```
 ### 02-1. 로깅 아키텍처에서 에러 로그 추출 방법
 ![image](https://user-images.githubusercontent.com/50174803/131027691-f19cb1c4-5f97-4a65-b15c-0f070bb4a83f.png)
@@ -93,3 +93,53 @@ www.도메인주소/cluster-info
 ## Service Map
 ![서비스맵](https://user-images.githubusercontent.com/50174803/129410469-4cc9bbb2-eb4c-4190-86fd-39a972879d59.jpg)
 
+## 현재 진행도 21.08.27 기준
+
+* 인프라 구성 - 팀장 이상원 
+```
+1. 환경 세팅
+< 완료 >
+Cloud9 , IAM, EKS, CloudFormation , default-setting.sh
+
+< 미완 >
+advanced-setting.sh 
+
+
+2. 클라이언트 라이브러리
+< 완료 >
+Helm chart를 통한 리소스 배포
+template(cronjob,deployment,service) , serviceaccount, clusterrole&binding, ingress , pv&pvc, value.yaml
+
+< 미완 >
+Helm chart에 ECR Private image에 대한 구성 필요 serviceaccount, cronjob spec 수정해야함.
+
+3. 로깅 아키텍처
+< 완료 >
+helm chart loki-stack 을 이용한 loki, promtail, grafana, prometheus 배포 완료
+
+3-1. 로깅 아키텍처 - 에러 로그 추출
+< helm 배포 완료 >
+loki-stack helm chart에서 eventrouter 설정을 통해, 데몬셋으로 존재하는 promtail이 각 노드에서 
+kubectl get event 에 관한 정보를 저장할 수 있도록 설정 (default로는 event에 관련된 로그를 가져올 수 없다)
+
+< 쉘 스크립트 완료 >
+Shell Script 를 통해 특정 시간대, 특정 에러, 특정 네임스페이스에 해당되는 값을 S3로 보내도록 설정
+이 쉘 스크립트는 cron으로 설정하여 2021년 xx월 x일의 n0 - n9 까지 해당되는 에러를 추출한다.
+ex) 2021.08.27:13:00 - 2021.08.27:13:09
+    2021.08.27:13:10 - 2021.08.27:13:19
+    ...
+    ...
+
+< 미완 >
+로그를 S3로 가져와 전처리를 Lambda 에서 하고 전처리된 값을 새로운 S3 버킷으로 보내는 과정(테스트)은 완료했고,
+Lambda에서 로그 전처리 부분이 남았음.
+
+4. 인프라 리소스 시각화
+< 미완 >
+dashboard.json 생성
+Alert-rule 
+
+
+
+```
+* 프론트 앤드
