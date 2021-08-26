@@ -147,6 +147,8 @@ Alert-rule
 노드 오토스케일링
 
 
+2021.09.02 까지,
+부하테스트 , Lambda 로그 전처리, ECR Private registry, advanced-setting.sh , 프론트 파드 테스트 
 
 ```
 
