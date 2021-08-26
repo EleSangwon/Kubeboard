@@ -1,7 +1,5 @@
 # Kubernetes-Enterprise-Log-Analysis-System
 
-## 프로젝트 활동 기간 21.04.13 ~ (현재 진행 중)
-
 ## 프로젝트 시작 21.07.06 ~ 
 
 ## 프로젝트 내용
@@ -117,6 +115,9 @@ Helm chart에 ECR Private image에 대한 구성 필요 serviceaccount, cronjob 
 < 완료 >
 helm chart loki-stack 을 이용한 loki, promtail, grafana, prometheus 배포 완료
 
+< 미완 >
+프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
+
 3-1. 로깅 아키텍처 - 에러 로그 추출
 < helm 배포 완료 >
 loki-stack helm chart에서 eventrouter 설정을 통해, 데몬셋으로 존재하는 promtail이 각 노드에서 
@@ -135,11 +136,36 @@ ex) 2021.08.27:13:00 - 2021.08.27:13:09
 Lambda에서 로그 전처리 부분이 남았음.
 
 4. 인프라 리소스 시각화
-< 미완 >
+< 미완  & 미정 >
 dashboard.json 생성
 Alert-rule 
 
 
+5. 부하 테스트
+< 미완 >
+수평적 파드 오토스케일링 (HPA) 를 적용해 시스템 부하상태에 따른 Pod Auto Scaling
+노드 오토스케일링
+
+
 
 ```
-* 프론트 앤드
+
+* 프론트 앤드 - 팀원 황서희
+```
+1. 클러스터 상태 시각화 웹페이지
+< 미완 >
+
+- prometheus, grafana 아이콘 추가 후 클릭 시, 새 탭이 켜지고 연결
+
+- UI / UX 적용
+
+- dropdown 화살표 만들기
+
+- 리스트 형태의 json에 대한 처리
+
+- 메인 페이지에 쿠버네티스 아이콘 추가
+
+- docker 이미지 
+
+```
+![KakaoTalk_20210823_214738587](https://user-images.githubusercontent.com/50174803/131030358-0fdd8006-f095-4944-b922-3f305eafa204.png)
