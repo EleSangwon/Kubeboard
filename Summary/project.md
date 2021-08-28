@@ -62,3 +62,13 @@ kubectl create -f 3.yaml
 이 프로젝트에서는 클라이언트 라이브러리 파드를 배포하기 위한 yaml
 PV&PVC.yaml , Ingress.yaml , Clusterrole & binding 등을 yaml  
 ```
+## Image Registry
+```
+dockerhub 프리 계정으로 시간당 제한량 때문에, AWS ECR 로 이미지를 저장했다.
+처음엔, 퍼블릭으로 저장했고 그 이미지를 깃헙에 올려두었다.
+생각해보니 퍼블릭 이미지는 누구나 액세스할 수 있고, 누군가 의도적으로 접근하면
+계정의 비용부담도 올라가고, 노출되길 원치않는 이미지가 노출될 수 있기 때문에
+Public -> Private 이미지로 변경하였다. 변경 후, 권한이 없으면 프라이빗 이미지에
+접근할 수 없음을 확인했다.
+
+```
