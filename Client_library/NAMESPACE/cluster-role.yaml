@@ -1,99 +1,21 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: clientlibrary-ns-list
+  name: clientlibrary-helm-ns
 rules:
 - apiGroups: ["*"]
-  resources: ["*"]
-  verbs: ["*"]
+  resources: ["namespaces","pods"]
+  verbs: ["get","list","watch"] # get : 개별 리소스 조회 , list : 여러건의 리소스 조회
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: clientlibrary-ns-list1
+  name: clientlibrary-helm-ns
 subjects:
 - kind: ServiceAccount
-  name: default
-  namespace: client-library
-roleRef:
-  kind: ClusterRole
-  name: clientlibrary-ns-list
-  apiGroup: rbac.authorization.k8s.io
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: clientlibrary-ns-list2
-subjects:
-- kind: ServiceAccount
-  name: default
+  name: mychart
   namespace: default
 roleRef:
   kind: ClusterRole
-  name: clientlibrary-ns-list
-  apiGroup: rbac.authorization.k8s.io
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: clientlibrary-ns-list3
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: kube-node-lease
-roleRef:
-  kind: ClusterRole
-  name: clientlibrary-ns-list
-  apiGroup: rbac.authorization.k8s.io
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: clientlibrary-ns-list4
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: kube-public
-roleRef:
-  kind: ClusterRole
-  name: clientlibrary-ns-list
-  apiGroup: rbac.authorization.k8s.io
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: clientlibrary-ns-list5
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: kube-system
-roleRef:
-  kind: ClusterRole
-  name: clientlibrary-ns-list
-  apiGroup: rbac.authorization.k8s.io
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: clientlibrary-ns-list6
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: sangwon
-roleRef:
-  kind: ClusterRole
-  name: clientlibrary-ns-list
-  apiGroup: rbac.authorization.k8s.io
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: clientlibrary-ns-list7
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: sangwon4
-roleRef:
-  kind: ClusterRole
-  name: clientlibrary-ns-list
+  name: clientlibrary-helm-ns
   apiGroup: rbac.authorization.k8s.io

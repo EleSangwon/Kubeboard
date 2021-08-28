@@ -1,22 +1,21 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: clientlibrary-service-info
-  namespace: client-library
+  name: clientlibrary-helm-svc
 rules:
 - apiGroups: [""]
   resources: ["services"]
-  verbs: ["*"]
+  verbs: ["get","list","watch"]
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: clientlibrary-service-info
+  name: clientlibrary-helm-svc
 subjects:
 - kind: ServiceAccount
-  name: default
-  namespace: client-library
+  name: mychart
+  namespace: default
 roleRef:
   kind: ClusterRole
-  name: clientlibrary-service-info
+  name: clientlibrary-helm-svc
   apiGroup: rbac.authorization.k8s.io

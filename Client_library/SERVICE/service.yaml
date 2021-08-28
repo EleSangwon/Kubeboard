@@ -1,22 +1,20 @@
-apiVersion: v1
-kind: Pod
+apiVersion: batch/v1beta1
+kind: CronJob
 metadata:
-  name: servicetest
-  namespace: client-library
-  labels:
-    app: clientlibrary-service-info
+  name: cron-svc-info
 spec:
-  volumes:
-  - name: shared-data
-    persistentVolumeClaim:
-      claimName: clientlibraryclaim
-  containers:
-  - name: servicetest
-    image: sangwondockerhub/service_info
-    command: ["python","service.py"]
-    #args: ["python pod_list.py > /app-data/pod_resource.txt"]
-    volumeMounts:
-    - name: shared-data
-      mountPath: /client-resource
-  restartPolicy: Never
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets: 
+          - name: regcred
+          serviceAccountName: mychart
+          containers:
+          - name: svcinfo
+            image: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-svc-resource:latest
+            command: ["python","service.py"]
+
   
