@@ -7,7 +7,7 @@ v1 = client.CoreV1Api()
 ret = v1.list_pod_for_all_namespaces(watch=False)
 pods_info=[]
 for i in ret.items:
-    if i.metadata.namespace=="client-library":
+    if i.metadata.namespace=="default":
         jsonString=json.dumps({"NAMESPACE":i.metadata.namespace,"POD_NAME":i.metadata.name,"POD_IMAGE":i.spec.containers[0].image, "POD_IP":i.status.pod_ip,"NODE_IP":i.spec.node_name})
         pods_info.append(jsonString)
 
