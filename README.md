@@ -108,7 +108,7 @@ advanced-setting.sh
 Helm chart를 통한 리소스 배포
 template(cronjob,deployment,service) , serviceaccount, clusterrole&binding, ingress , pv&pvc, value.yaml
 
-< 미완 >
+< 완료 >
 Helm chart에 ECR Private image에 대한 구성 필요 serviceaccount, cronjob spec 수정해야함.
 
 3. 로깅 아키텍처
@@ -131,7 +131,7 @@ ex) 2021.08.27:13:00 - 2021.08.27:13:09
     ...
     ...
 
-< 미완 >
+< 완료 >
 로그를 S3로 가져와 전처리를 Lambda 에서 하고 전처리된 값을 새로운 S3 버킷으로 보내는 과정(테스트)은 완료했고,
 Lambda에서 로그 전처리 부분이 남았음.
 
@@ -148,7 +148,7 @@ Alert-rule
 
 
 2021.09.02 까지,
-부하테스트 , Lambda 로그 전처리, advanced-setting.sh , 프론트 파드 테스트 
+부하테스트 , advanced-setting.sh , 프론트 파드 테스트 
 
 ```
 
