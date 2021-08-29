@@ -148,7 +148,7 @@ Alert-rule
 
 
 2021.09.02 까지,
-부하테스트 , Lambda 로그 전처리, advanced-setting.sh , 프론트 파드 테스트 
+부하테스트 , advanced-setting.sh , 프론트 파드 테스트 
 
 ```
 
