@@ -109,11 +109,14 @@ Helm chart를 통한 리소스 배포
 template(cronjob,deployment,service) , serviceaccount, clusterrole&binding, ingress , pv&pvc, value.yaml
 
 < 완료 >
-Helm chart에 ECR Private image에 대한 구성 필요 serviceaccount, cronjob spec 수정해야함.
+Helm chart에 ECR Private image에 대한 
+
+< 완료 >
+main-frontend 파드가 영구 볼륨에 저장된 값에 접근해서 프론트로 시각화 테스트 
 
 3. 로깅 아키텍처
 < 완료 >
-helm chart loki-stack 을 이용한 loki, promtail, grafana, prometheus 배포 완료
+helm chart loki-stack 을 이용한 loki, promtail, grafana, prometheus 배포 
 
 < 미완 >
 프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
@@ -148,7 +151,7 @@ Alert-rule
 
 
 2021.09.02 까지,
-부하테스트 , advanced-setting.sh , 프론트 파드 테스트 
+부하테스트 , advanced-setting.sh 
 
 ```
 
