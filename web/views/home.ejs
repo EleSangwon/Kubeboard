@@ -14,6 +14,7 @@
                   <div class="card-body">
                     <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
                     <h3 class="text-left" style="color :white; font-weight: lighter;">컨테이너</h3>
+                    <img src= "views/partials/image/logo.png"class="center_right" height="30" width="30">
                   </div>
                 </div>
                 <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
@@ -42,19 +43,19 @@
                     <tbody>
                       <tr>
                         <th scope="row" class="col-2 text-center">이름</th>
-                        <td>Node 이름</td>
+                        <td><%= node[0].NAME %></td>
                       </tr>
                       <tr>
                         <th scope="row" class="text-center">Docker 버전</th>
-                        <td class="col-8">Docker 버전</td>
+                        <td class="col-8"><%= node[0].STATUS %></td>
                       </tr>
                       <tr>
                         <th scope="row" class="text-center">Node CPU</th>
-                        <td>Node CPU</td>
+                        <td><%= node[0].VERSION %></td>
                       </tr>
                       <tr>
                         <th scope="row" class="text-center">Node Memory</th>
-                        <td>Node Memory</td> <!-- 추후 바뀔 수 있음 -->
+                        <td><%= node[0].OSImage %></td> <!-- 추후 바뀔 수 있음 -->
                       </tr>
                     </tbody>
                   </table>                  
@@ -93,38 +94,6 @@
                   </table>                  
                 </div>
               </div>
-              <div class="pt-5 mx-3">
-                <span>Service 정보</span>
-                <div>
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <th scope="row" class="col-2 text-center">Namespace</th>
-                        <td>Namespace</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="text-center">Name</th>
-                        <td class="col-8">Name</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="text-center">HostName</th>
-                        <td>HostName</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="text-center">Protocol</th>
-                        <td>Protocol</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="text-center">Nodeport</th>
-                        <td>Nodeport</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="text-center">Targetport</th>
-                        <td>TargetPort</td>
-                      </tr>
-                    </tbody>
-                  </table>                  
-                </div>
               </div>
             </div>
           </div>

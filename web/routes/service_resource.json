@@ -1,0 +1,47 @@
+[{
+        "NAMESPACE": "default",
+        "NAME": "kubernetes",
+        "TYPE": "ClusterIP",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.0.1",
+        "PORT": 443,
+        "NODEPORT": null,
+        "PROTOCOL": "TCP"
+    }, {
+        "NAMESPACE": "default",
+        "NAME": "log-report-svc",
+        "TYPE": "ClusterIP",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.235.172",
+        "PORT": 80,
+        "NODEPORT": null,
+        "PROTOCOL": "TCP"
+    }, {
+        "NAMESPACE": "default",
+        "NAME": "main-svc",
+        "TYPE": "ClusterIP",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.205.97",
+        "PORT": 80,
+        "NODEPORT": null,
+        "PROTOCOL": "TCP"
+    }, {
+        "NAMESPACE": "default",
+        "NAME": "nginx-test",
+        "TYPE": "ClusterIP",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.106.185",
+        "PORT": 80,
+        "NODEPORT": null,
+        "PROTOCOL": "TCP"
+    }, {
+        "NAMESPACE": "kube-system",
+        "NAME": "kube-dns",
+        "TYPE": "ClusterIP",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.0.10",
+        "PORT": 53,
+        "NODEPORT": null,
+        "PROTOCOL": "UDP"
+    }
+]
