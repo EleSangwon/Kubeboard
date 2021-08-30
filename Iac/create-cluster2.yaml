@@ -1,0 +1,24 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: 
+  region: 
+  version: ""
+
+availabilityZones: [" "]
+
+managedNodeGroups:
+- name: node-group
+  desiredCapacity: 1
+  instanceType: t3.small
+  iam:
+      withAddonPolicies:
+        imageBuilder: true # AWS ECR에 대한 권한 추가
+        albIngress: true  # albIngress에 대한 권한 추가
+        cloudWatch: true # cloudWatch에 대한 권한 추가
+        autoScaler: true # auto scaling에 대한 권한 추가
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]

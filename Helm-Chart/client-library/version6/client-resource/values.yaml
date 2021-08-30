@@ -9,15 +9,15 @@ volumeclaimName: hanium-2021-pvc
 mountPath: /client-resource
 ## Client Pod Resource
 podname: cr-pod-resource
-podimage: 
+podimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource:latest
 # Client Node Resource
 nodename: cr-node-resource
-nodeimage: 
+nodeimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-node-resource:latest
 # Client NS Resource
-nsimage: 
+nsimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-ns-resource:latest
 nsname: cr-ns-resource
 # Client SVC Resource
-svcimage: 
+svcimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-svc-resource:latest
 svcname: cr-service-resource
 # SVC Client 
 frontendname: nginx-test
@@ -43,4 +43,10 @@ cronjobns: cronjob-ns-resource
 cronjobnode: cronjob-node-resource
 cronjobpod: cronjob-pod-resource
 cronjobsvc: cronjob-svc-resource
- 
+# serviceaccount name
+saname: mychart
+# Clusterrole
+clusterrolepod: clientlibrary-helm-pod
+clusterrolesvc: clientlibrary-helm-svc
+clusterrolens: clientlibrary-helm-ns
+clusterrolenode: clientlibrary-helm-node

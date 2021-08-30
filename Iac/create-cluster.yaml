@@ -1,0 +1,13 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: 
+  region: 
+  version: ""
+availabilityZones: [" "]
+managedNodeGroups:
+- name: node-group
+  desiredCapacity: 1
+  instanceType: t3.small
+  

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nsinfo
+  #namespace: client-library
+  labels:
+    app: clientlibrary-ns-list
+spec:
+  imagePullSecrets: 
+  - name: regcred
+  serviceAccountName: mychart
+  containers:
+  - name: nodeinfo
+    image: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource:latest
+    command: ["python","ns.py"]
+    #command: ["sh","-c"]
+    #args: ["python ns.py"]
+  restartPolicy: Never
+  

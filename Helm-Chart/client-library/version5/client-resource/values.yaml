@@ -8,17 +8,17 @@ volumename: hanium-2021-pv
 volumeclaimName: hanium-2021-pvc
 mountPath: /client-resource
 ## Client Pod Resource
-podname: deployment-pod-resource
+podname: cr-pod-resource
 podimage: 
 # Client Node Resource
-nodename: deployment-node-resource
+nodename: cr-node-resource
 nodeimage: 
 # Client NS Resource
 nsimage: 
-nsname: deployment-ns-resource
+nsname: cr-ns-resource
 # Client SVC Resource
-svcimage: 
-svcname: deployment-service-resource
+svcimage:
+svcname: cr-service-resource
 # SVC Client 
 frontendname: nginx-test
 frontendimage: nginx
@@ -27,7 +27,7 @@ frontendns: frontend
 # SVC Log Report
 logreportname: log-report
 logsvc: log-report-svc
-# SVX Main
+# SVC Main
 firstpage: nginx-main 
 firstsvc: main-svc
 # Ingress
@@ -35,3 +35,13 @@ ingressname: hanium-ingress
 ingresspathone: /cluster-info/
 ingresspathtwo: /log-report/
 ingresspathany: /*
+# resource
+cpu: "100m"
+memory: "256Mi"
+# Cronjob
+cronjobns: cronjob-ns-resource
+cronjobnode: cronjob-node-resource
+cronjobpod: cronjob-pod-resource
+cronjobsvc: cronjob-svc-resource
+# serviceaccount name
+saname: mychart

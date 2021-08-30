@@ -1,21 +1,21 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: clientlibrary-helm-ns
+  name: {{ .Values.clusterrolesvc }}
 rules:
-- apiGroups: ["*"]
-  resources: ["namespaces","pods"]
-  verbs: ["get","list","watch"] # get : 개별 리소스 조회 , list : 여러건의 리소스 조회
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get","list","watch"]
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: clientlibrary-helm-ns
+  name: {{ .Values.clusterrolesvc }}
 subjects:
 - kind: ServiceAccount
-  name: mychart
+  name: {{ .Values.saname }}
   namespace: default
 roleRef:
   kind: ClusterRole
-  name: clientlibrary-helm-ns
+  name: {{ .Values.clusterrolesvc }}
   apiGroup: rbac.authorization.k8s.io
