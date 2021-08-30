@@ -1,49 +1,43 @@
 exports.nodeInfo = function (req, res) {
     const os = require("os");
+    const fs = require('fs');
+
+    /*const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8');
+    const node = JSON.parse(nodeFile);*/
+    const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8');
+    const node = JSON.parse(nodeFile);
 
     res.render('home.ejs', {
         osplatform: os.platform,
         ostype: os.type,
         osarch: os.arch,
-
-    /*nodeName: node[0].NAME,
-    nodeStatus: node[0].STATUS,
-    nodeVersion: node[0].VERSION,
-    nodeOs: node[0].OSImage,
-    */
+        node: node,        
     });
 }
+
 
 exports.podInfo = function (req, res) {
 
-    res.render('home.ejs', {
+    const fs = require('fs');
 
-    /*namespace: pod[0].NAMESPACE,
-        podName: pod[0].POD_NAME,
-        podImage: pod[0].POD_IMAGE,
-        podIp: pod[0].POD_IP,
-        nodeIp: pod[0].NODE_IP,*/
-    });
-}
+    const podFile = fs.readFileSync('routes/pod_resource.json', 'utf-8');
+    const pod = JSON.parse(podFile);
 
-exports.nsInfo = function (req, res) {
 
-    res.render('home.ejs', {
-        /*nsKind: ns[0].KIND,
-        nsName: ns[0].NAME,
-        status: ns[0].STATUS,
-        podNumber: ns[0].POD_NUMBER,*/
+    res.render('pod.ejs', {
+        pod : pod,
     });
 }
 
 exports.serviceInfo = function (req, res) {
 
-    res.render('home.ejs', {
-        /*serNameSpace: node[0].NAMESPACE,
-        serName: service[0].NAME,
-        serHostName: service[0].HOSTNAME,
-        protocol: service[0].PROTOCOL,
-        nodeport: service[0].NODEPORT,
-        targetport: service[0].TARGETPORT, */
+    const fs = require('fs');
+
+    const serviceFile = fs.readFileSync('routes/service_resource.json', 'utf-8');
+    const service = JSON.parse(serviceFile);
+
+
+    res.render('service.ejs', {
+        service : service,
     });
 }

@@ -16,20 +16,26 @@
                                         <th scope="col">#</th>
                                         <th scope="col">namespace</th>
                                         <th scope="col">name</th>
-                                        <th scope="col">image</th>
-                                        <th scope="col">IP</th>
-                                        <th scope="col">NodeIP</th>
+                                        <th scope="col">type</th>
+                                        <th scope="col">ClusterIP</th>
+                                        <th scope="col">TypeIP</th>
+                                        <th scope="col">PORT</th>
+                                        <th scope="col">NODEPORT</th>
+                                        <th scope="col">Protocol</th>
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <% for (var i = 0; i < pod.length; i++) { %>
+                                      <% for (var i = 0; i < service.length; i++) { %>
                                       <tr>
                                         <th scope="row" class="col-1"><%= i + 1 %></th>
-                                        <td class="col-2"><%= pod[i].NAMESPACE %></td>
-                                        <td class="col-2"><%= pod[i].POD_NAME %></td>
-                                        <td class="col-2"><%= pod[i].POD_IMAGE %></td>
-                                        <td class="col-2"><%= pod[i].POD_IP %></td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
-                                        <td class="col-2"><%= pod[i].NODE_IP %></td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                        <td class="col"><%= service[i].NAMESPACE %></td>
+                                        <td class="col"><%= service[i].NAME %></td>
+                                        <td class="col"><%= service[i].TYPE %></td>
+                                        <td class="col"><%= service[i].CLUSTERIP %></td>
+                                        <td class="col"><%= service[i].TYPEIP %></td>
+                                        <td class="col"><%= service[i].PORT %></td>
+                                        <td class="col"><%= service[i].NODEPORT %></td>
+                                        <td class="col"><%= service[i].PROTOCOL %></td>
                                       </tr>
                                       <% } %>
                                     </tbody>

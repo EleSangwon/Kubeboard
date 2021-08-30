@@ -11,8 +11,8 @@
         "NAMESPACE": "default",
         "NAME": "log-report-svc",
         "TYPE": "ClusterIP",
-        "CLUSTER-IP": null,
-        "TYPE-IP": "10.100.235.172",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.235.172",
         "PORT": 80,
         "NODEPORT": null,
         "PROTOCOL": "TCP"
@@ -29,8 +29,8 @@
         "NAMESPACE": "default",
         "NAME": "nginx-test",
         "TYPE": "ClusterIP",
-        "CLUSTER-IP": null,
-        "TYPE-IP": "10.100.106.185",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.106.185",
         "PORT": 80,
         "NODEPORT": null,
         "PROTOCOL": "TCP"
@@ -38,8 +38,8 @@
         "NAMESPACE": "kube-system",
         "NAME": "kube-dns",
         "TYPE": "ClusterIP",
-        "CLUSTER-IP": null,
-        "TYPE-IP": "10.100.0.10",
+        "CLUSTERIP": null,
+        "TYPEIP": "10.100.0.10",
         "PORT": 53,
         "NODEPORT": null,
         "PROTOCOL": "UDP"
