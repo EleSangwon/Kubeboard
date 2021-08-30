@@ -20,16 +20,16 @@ nsname: cr-ns-resource
 svcimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-svc-resource:latest
 svcname: cr-service-resource
 # SVC Client 
-frontendname: nginx-test
-frontendimage: nginx
+frontendname: main-frontend
+frontendimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-main-frontend:latest
 frontsvc: nginx-test
 frontendns: frontend
 # SVC Log Report
 logreportname: log-report
 logsvc: log-report-svc
 # SVC Main
-firstpage: nginx-main 
-firstsvc: main-svc
+firstpage: main-frontend 
+firstsvc: main-frontend-svc
 # Ingress
 ingressname: hanium-ingress
 ingresspathone: /cluster-info/
