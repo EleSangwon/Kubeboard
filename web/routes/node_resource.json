@@ -1,0 +1,12 @@
+[{
+        "NAME": "ip-192-168-22-119.ap-northeast-1.compute.internal",
+        "STATUS": "Ready",
+        "VERSION": "v1.19.13-eks-8df270",
+        "OSImage": "Amazon Linux 2"
+    }, {
+        "NAME": "ip-192-168-64-65.ap-northeast-1.compute.internal",
+        "STATUS": "Ready",
+        "VERSION": "v1.19.13-eks-8df270",
+        "OSImage": "Amazon Linux 2"
+    }
+]
