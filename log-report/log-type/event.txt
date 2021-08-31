@@ -1,0 +1,82 @@
+LAST SEEN   TYPE      REASON                  OBJECT                                             MESSAGE
+4m40s       Normal    Scheduled               pod/cronjob-node-resource-1630432500-sfq9s         Successfully assigned default/cronjob-node-resource-1630432500-sfq9s to ip-192-168-47-159.ap-northeast-1.compute.internal
+4m39s       Normal    Pulling                 pod/cronjob-node-resource-1630432500-sfq9s         Pulling image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-node-resource:latest"
+4m28s       Normal    Pulled                  pod/cronjob-node-resource-1630432500-sfq9s         Successfully pulled image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-node-resource:latest" in 10.733170713s
+4m28s       Normal    Created                 pod/cronjob-node-resource-1630432500-sfq9s         Created container cr-node-resource
+4m28s       Normal    Started                 pod/cronjob-node-resource-1630432500-sfq9s         Started container cr-node-resource
+4m40s       Normal    SuccessfulCreate        job/cronjob-node-resource-1630432500               Created pod: cronjob-node-resource-1630432500-sfq9s
+4m25s       Normal    Completed               job/cronjob-node-resource-1630432500               Job completed
+4m40s       Normal    SuccessfulCreate        cronjob/cronjob-node-resource                      Created job cronjob-node-resource-1630432500
+4m20s       Normal    SawCompletedJob         cronjob/cronjob-node-resource                      Saw completed job: cronjob-node-resource-1630432500, status: Complete
+4m40s       Normal    Scheduled               pod/cronjob-ns-resource-1630432500-lmjlj           Successfully assigned default/cronjob-ns-resource-1630432500-lmjlj to ip-192-168-47-159.ap-northeast-1.compute.internal
+4m38s       Normal    Pulling                 pod/cronjob-ns-resource-1630432500-lmjlj           Pulling image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-ns-resource:latest"
+4m29s       Normal    Pulled                  pod/cronjob-ns-resource-1630432500-lmjlj           Successfully pulled image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-ns-resource:latest" in 9.157566499s
+4m29s       Normal    Created                 pod/cronjob-ns-resource-1630432500-lmjlj           Created container cr-ns-resource
+4m29s       Normal    Started                 pod/cronjob-ns-resource-1630432500-lmjlj           Started container cr-ns-resource
+4m40s       Normal    SuccessfulCreate        job/cronjob-ns-resource-1630432500                 Created pod: cronjob-ns-resource-1630432500-lmjlj
+4m21s       Normal    Completed               job/cronjob-ns-resource-1630432500                 Job completed
+4m40s       Normal    SuccessfulCreate        cronjob/cronjob-ns-resource                        Created job cronjob-ns-resource-1630432500
+4m20s       Normal    SawCompletedJob         cronjob/cronjob-ns-resource                        Saw completed job: cronjob-ns-resource-1630432500, status: Complete
+4m40s       Normal    Scheduled               pod/cronjob-pod-resource-1630432500-kx7sx          Successfully assigned default/cronjob-pod-resource-1630432500-kx7sx to ip-192-168-47-159.ap-northeast-1.compute.internal
+4m37s       Normal    Pulling                 pod/cronjob-pod-resource-1630432500-kx7sx          Pulling image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource:latest"
+4m29s       Normal    Pulled                  pod/cronjob-pod-resource-1630432500-kx7sx          Successfully pulled image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource:latest" in 8.335670468s
+4m29s       Normal    Created                 pod/cronjob-pod-resource-1630432500-kx7sx          Created container cr-pod-resource
+4m28s       Normal    Started                 pod/cronjob-pod-resource-1630432500-kx7sx          Started container cr-pod-resource
+4m40s       Normal    SuccessfulCreate        job/cronjob-pod-resource-1630432500                Created pod: cronjob-pod-resource-1630432500-kx7sx
+4m26s       Normal    Completed               job/cronjob-pod-resource-1630432500                Job completed
+4m40s       Normal    SuccessfulCreate        cronjob/cronjob-pod-resource                       Created job cronjob-pod-resource-1630432500
+4m20s       Normal    SawCompletedJob         cronjob/cronjob-pod-resource                       Saw completed job: cronjob-pod-resource-1630432500, status: Complete
+4m40s       Normal    Scheduled               pod/cronjob-svc-resource-1630432500-tbw4r          Successfully assigned default/cronjob-svc-resource-1630432500-tbw4r to ip-192-168-47-159.ap-northeast-1.compute.internal
+4m38s       Normal    Pulling                 pod/cronjob-svc-resource-1630432500-tbw4r          Pulling image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-svc-resource:latest"
+4m29s       Normal    Pulled                  pod/cronjob-svc-resource-1630432500-tbw4r          Successfully pulled image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-svc-resource:latest" in 8.976274454s
+4m29s       Normal    Created                 pod/cronjob-svc-resource-1630432500-tbw4r          Created container cr-service-resource
+4m28s       Normal    Started                 pod/cronjob-svc-resource-1630432500-tbw4r          Started container cr-service-resource
+4m40s       Normal    SuccessfulCreate        job/cronjob-svc-resource-1630432500                Created pod: cronjob-svc-resource-1630432500-tbw4r
+4m24s       Normal    Completed               job/cronjob-svc-resource-1630432500                Job completed
+4m40s       Normal    SuccessfulCreate        cronjob/cronjob-svc-resource                       Created job cronjob-svc-resource-1630432500
+4m20s       Normal    SawCompletedJob         cronjob/cronjob-svc-resource                       Saw completed job: cronjob-svc-resource-1630432500, status: Complete
+82s         Normal    Killing                 pod/dev-grafana-cb48c8d97-znkzm                    Stopping container grafana
+65s         Normal    DeletingLoadBalancer    service/dev-grafana                                Deleting load balancer
+56s         Warning   PortNotAllocated        service/dev-grafana                                Port 32168 is not allocated; repairing
+56s         Warning   ClusterIPNotAllocated   service/dev-grafana                                Cluster IP [IPv4]:10.100.198.59 is not allocated; repairing
+44s         Normal    DeletedLoadBalancer     service/dev-grafana                                Deleted load balancer
+82s         Normal    Killing                 pod/dev-kube-state-metrics-598b96d464-qszgd        Stopping container kube-state-metrics
+55s         Warning   Unhealthy               pod/dev-loki-0                                     Liveness probe failed: HTTP probe failed with statuscode: 503
+54s         Warning   Unhealthy               pod/dev-loki-0                                     Readiness probe failed: HTTP probe failed with statuscode: 503
+83s         Normal    Killing                 pod/dev-loki-0                                     Stopping container loki
+3m          Warning   FailedScheduling        pod/dev-prometheus-alertmanager-77c99f65c9-5mbxz   0/2 nodes are available: 1 Too many pods, 1 node(s) had volume node affinity conflict.
+82s         Normal    Killing                 pod/dev-prometheus-node-exporter-7pbkz             Stopping container prometheus-node-exporter
+82s         Normal    Killing                 pod/dev-prometheus-node-exporter-wxll8             Stopping container prometheus-node-exporter
+83s         Normal    Killing                 pod/dev-prometheus-pushgateway-798dccffb7-9g6nz    Stopping container prometheus-pushgateway
+82s         Warning   Unhealthy               pod/dev-prometheus-pushgateway-798dccffb7-9g6nz    Readiness probe failed: Get "http://192.168.68.128:9091/-/ready": dial tcp 192.168.68.128:9091: connect: connection refused
+3m          Warning   FailedScheduling        pod/dev-prometheus-server-68dfff99d-5jrgt          0/2 nodes are available: 1 Too many pods, 1 node(s) had volume node affinity conflict.
+82s         Normal    Killing                 pod/dev-promtail-9vfs8                             Stopping container promtail
+54s         Warning   Unhealthy               pod/dev-promtail-9vfs8                             Readiness probe failed: Get "http://192.168.72.61:3101/ready": dial tcp 192.168.72.61:3101: connect: connection refused
+82s         Normal    Killing                 pod/dev-promtail-g6fpn                             Stopping container promtail
+53s         Warning   Unhealthy               pod/dev-promtail-g6fpn                             Readiness probe failed: Get "http://192.168.35.208:3101/ready": dial tcp 192.168.35.208:3101: connect: connection refused
+9m40s       Normal    FailedBinding           persistentvolumeclaim/hanium-2021-pvc              no persistent volumes available for this claim and no storage class is set
+9m26s       Warning   FailedScheduling        pod/log-report-6788d9b856-ndtxd                    0/2 nodes are available: 2 pod has unbound immediate PersistentVolumeClaims.
+9m18s       Normal    Scheduled               pod/log-report-6788d9b856-ndtxd                    Successfully assigned default/log-report-6788d9b856-ndtxd to ip-192-168-47-159.ap-northeast-1.compute.internal
+9m16s       Normal    Pulling                 pod/log-report-6788d9b856-ndtxd                    Pulling image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-main-frontend:latest"
+8m59s       Normal    Pulled                  pod/log-report-6788d9b856-ndtxd                    Successfully pulled image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-main-frontend:latest" in 16.942240649s
+8m59s       Normal    Created                 pod/log-report-6788d9b856-ndtxd                    Created container main-frontend
+8m58s       Normal    Started                 pod/log-report-6788d9b856-ndtxd                    Started container main-frontend
+87s         Normal    Killing                 pod/log-report-6788d9b856-ndtxd                    Stopping container main-frontend
+9m40s       Normal    SuccessfulCreate        replicaset/log-report-6788d9b856                   Created pod: log-report-6788d9b856-ndtxd
+9m40s       Normal    ScalingReplicaSet       deployment/log-report                              Scaled up replica set log-report-6788d9b856 to 1
+9m26s       Warning   FailedScheduling        pod/main-frontend-78cf9ccd55-zszj5                 0/2 nodes are available: 2 pod has unbound immediate PersistentVolumeClaims.
+9m18s       Normal    Scheduled               pod/main-frontend-78cf9ccd55-zszj5                 Successfully assigned default/main-frontend-78cf9ccd55-zszj5 to ip-192-168-47-159.ap-northeast-1.compute.internal
+9m16s       Normal    Pulling                 pod/main-frontend-78cf9ccd55-zszj5                 Pulling image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-main-frontend:latest"
+8m59s       Normal    Pulled                  pod/main-frontend-78cf9ccd55-zszj5                 Successfully pulled image "238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-main-frontend:latest" in 16.970827239s
+8m59s       Normal    Created                 pod/main-frontend-78cf9ccd55-zszj5                 Created container main-frontend
+8m59s       Normal    Started                 pod/main-frontend-78cf9ccd55-zszj5                 Started container main-frontend
+87s         Normal    Killing                 pod/main-frontend-78cf9ccd55-zszj5                 Stopping container main-frontend
+9m40s       Normal    SuccessfulCreate        replicaset/main-frontend-78cf9ccd55                Created pod: main-frontend-78cf9ccd55-zszj5
+9m40s       Normal    EnsuringLoadBalancer    service/main-frontend-svc                          Ensuring load balancer
+9m37s       Normal    EnsuredLoadBalancer     service/main-frontend-svc                          Ensured load balancer
+87s         Normal    DeletingLoadBalancer    service/main-frontend-svc                          Deleting load balancer
+65s         Normal    DeletedLoadBalancer     service/main-frontend-svc                          Deleted load balancer
+9m40s       Normal    ScalingReplicaSet       deployment/main-frontend                           Scaled up replica set main-frontend-78cf9ccd55 to 1
+26m         Normal    Pulling                 pod/sangwon                                        Pulling image "nginx1"
+6m28s       Normal    BackOff                 pod/sangwon                                        Back-off pulling image "nginx1"
+97s         Warning   Failed                  pod/sangwon                                        Error: ImagePullBackOff
