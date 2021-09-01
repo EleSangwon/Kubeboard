@@ -9,8 +9,8 @@
                     <!-- Page Content  -->
                     <div id="content" class="p-4 p-md-5 pt-5">
                         <div class="container-fluid">
-                            <div class = row>
-                                <table class="table">
+                            <div class = "table-responsive">
+                                <table class="table w-auto center-block">
                                     <thead>
                                       <tr>
                                         <th scope="col">#</th>
@@ -25,11 +25,11 @@
                                       <% for (var i = 0; i < pod.length; i++) { %>
                                       <tr>
                                         <th scope="row" class="col-1"><%= i + 1 %></th>
-                                        <td class="col-2"><%= pod[i].NAMESPACE %></td>
-                                        <td class="col-2"><%= pod[i].POD_NAME %></td>
-                                        <td class="col-2"><%= pod[i].POD_IMAGE %></td>
-                                        <td class="col-2"><%= pod[i].POD_IP %></td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
-                                        <td class="col-2"><%= pod[i].NODE_IP %></td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                        <td><%= pod[i].NAMESPACE %></td>
+                                        <td><%= pod[i].POD_NAME %></td>
+                                        <td><%= pod[i].POD_IMAGE %></td>
+                                        <td><%= pod[i].POD_IP %></td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
+                                        <td><%= pod[i].NODE_IP %></td> <!--for문으로 pod 갯수 만큼 나오게 하기-->
                                       </tr>
                                       <% } %>
                                     </tbody>

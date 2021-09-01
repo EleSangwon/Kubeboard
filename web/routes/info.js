@@ -1,10 +1,7 @@
 exports.nodeInfo = function (req, res) {
     const os = require("os");
     const fs = require('fs');
-
-    /*const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8');
-    const node = JSON.parse(nodeFile);*/
-    const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8');
+    const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8').replace(/'/g, "");;
     const node = JSON.parse(nodeFile);
 
     res.render('home.ejs', {
@@ -20,7 +17,7 @@ exports.podInfo = function (req, res) {
 
     const fs = require('fs');
 
-    const podFile = fs.readFileSync('routes/pod_resource.json', 'utf-8');
+    const podFile = fs.readFileSync('routes/test_value.json', 'utf-8').replace(/'/g, "");
     const pod = JSON.parse(podFile);
 
 
@@ -33,7 +30,7 @@ exports.serviceInfo = function (req, res) {
 
     const fs = require('fs');
 
-    const serviceFile = fs.readFileSync('routes/service_resource.json', 'utf-8');
+    const serviceFile = fs.readFileSync('routes/service_resource.json', 'utf-8').replace(/'/g, "");;
     const service = JSON.parse(serviceFile);
 
 
@@ -41,3 +38,16 @@ exports.serviceInfo = function (req, res) {
         service : service,
     });
 }
+
+/* exports.nsInfo = function (req, res) {
+
+    const fs = require('fs');
+
+    const nsFile = fs.readFileSync('routes/namespace_resource.json', 'utf-8').replace(/'/g, "");;
+    const ns = JSON.parse(nsFile);
+
+
+    res.render('namespace.ejs', {
+        ns : ns,
+    });
+} */
