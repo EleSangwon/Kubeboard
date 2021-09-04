@@ -99,8 +99,8 @@ www.도메인주소/cluster-info
 < 완료 >
 Cloud9 , IAM, EKS, CloudFormation , default-setting.sh
 
-< 미완 >
-advanced-setting.sh 
+< 완료 >
+advanced-setting.sh - alb-ingress.sh add
 
 
 2. 클라이언트 라이브러리
@@ -150,8 +150,6 @@ Alert-rule
 노드 오토스케일링
 
 
-2021.09.02 까지,
-부하테스트 , advanced-setting.sh 
 
 ```
 
