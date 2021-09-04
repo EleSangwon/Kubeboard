@@ -89,7 +89,6 @@ echo "[1] Install Amazon CLI2"
 echo "[2] Install EKS Cluster"
 echo "[3] Install Helm "
 echo "[4] Install Argocd "
-echo "[5] Install Ingress Controller"
 echo "${BAR}"
 echo -n "Please insert a key as you need = "
 read choice
