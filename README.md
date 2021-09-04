@@ -24,7 +24,8 @@ Prometheus & Grafana - 인프라 리소스 시각화
 AWS - 퍼블릭 클라우드 플랫폼
 - EC2 - 가상서버  EC2(EBS) - 영구 스토리지 EC2(ELB) - 로드 밸런서
 - S3 - 파일 스토리지
-- Route53 - 도메인 연결 및 라우팅 정책 할당
+- Route53 - 도메인 연결 및 라우팅 정책 할당 
+- AWS Certificate Manage : 도메인에 연결될 SSL 인증서 발급 
 - EKS : 관리형 쿠버네티스
 
 CD - ArgoCD
