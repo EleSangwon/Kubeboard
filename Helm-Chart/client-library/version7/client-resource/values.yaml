@@ -1,0 +1,52 @@
+replicas: 1
+version: 'latest'
+
+# Hanium 2021 Kubernetes
+
+## Volume
+volumename: hanium-2021-pv
+volumeclaimName: hanium-2021-pvc
+mountPath: /client-resource
+## Client Pod Resource
+podname: cr-pod-resource
+podimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource:latest
+# Client Node Resource
+nodename: cr-node-resource
+nodeimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-node-resource:latest
+# Client NS Resource
+nsimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-ns-resource:latest
+nsname: cr-ns-resource
+# Client SVC Resource
+svcimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-svc-resource:latest
+svcname: cr-service-resource
+# SVC Client 
+frontendname: main-frontend
+frontendimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-main-frontend:latest
+frontsvc: main-frontend-svc
+frontendns: frontend
+# SVC Log Report
+logreportname: log-report
+logsvc: log-report-svc
+# SVC Main
+firstpage: main-frontend 
+firstsvc: main-frontend-svc
+# Ingress
+ingressname: hanium-ingress
+ingresspathone: /cluster-info/
+ingresspathtwo: /log-report/
+ingresspathany: /*
+# resource
+cpu: "100m"
+memory: "256Mi"
+# Cronjob
+cronjobns: cronjob-ns-resource
+cronjobnode: cronjob-node-resource
+cronjobpod: cronjob-pod-resource
+cronjobsvc: cronjob-svc-resource
+# serviceaccount name
+saname: mychart
+# Clusterrole
+clusterrolepod: clientlibrary-helm-pod
+clusterrolesvc: clientlibrary-helm-svc
+clusterrolens: clientlibrary-helm-ns
+clusterrolenode: clientlibrary-helm-node
