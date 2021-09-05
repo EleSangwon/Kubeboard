@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.frontsvc }}
+ # namespace: {{ .Values.frontendns }}
+spec:
+  selector:
+    app: {{ .Values.firstpage }}
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+
