@@ -12,8 +12,8 @@
               <div class="row">
                 <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
                   <div class="card-body">
-                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
-                    <h3 class="text-left" style="color :white; font-weight: lighter;">컨테이너</h3>
+                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;"><%= node.length %></h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">노드</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                       class="bi bi-hdd-stack" viewBox="0 0 16 16">
                       <path
@@ -26,8 +26,8 @@
                 </div>
                 <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
                   <div class="card-body">
-                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
-                    <h3 class="text-left" style="color :white; font-weight: lighter;">이미지</h3>
+                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;"><%= pod %></h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">파드</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                       class="bi bi-files" viewBox="0 0 16 16">
                       <path
@@ -38,8 +38,8 @@
                 </div>
                 <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
                   <div class="card-body">
-                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
-                    <h3 class="text-left" style="color :white; font-weight: lighter;">네트워크</h3>
+                    <h1 class="text-right text-bottom" style="color :white; font-weight: bold;"><%= ns %></h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">네임스페이스</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                       class="bi bi-hdd-network" viewBox="0 0 16 16">
                       <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
@@ -50,8 +50,8 @@
                 </div>
                 <div class="card mx-2" style="width: 23rem; height : 10rem; background-color: #866ec7;">
                   <div class="card-body">
-                      <h1 class="text-right text-bottom" style="color :white; font-weight: bold;">0</h1>
-                    <h3 class="text-left" style="color :white; font-weight: lighter;">볼륨</h3>
+                      <h1 class="text-right text-bottom" style="color :white; font-weight: bold;"><%= service %></h1>
+                    <h3 class="text-left" style="color :white; font-weight: lighter;">서비스</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                         class="bi bi-hdd" viewBox="0 0 16 16">
                         <path d="M4.5 11a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 10.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
@@ -67,7 +67,7 @@
               </div>
               <div class="pt-5">
                 <a class="btn" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-                  aria-controls="collapseExample">노드 정보</a>
+                  aria-controls="collapseExample">현재 노드 정보</a>
                 <div class="collapse" id="collapseExample">
                   <table class="table">
                     <tbody>

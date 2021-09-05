@@ -1,0 +1,26 @@
+[
+    {
+        "KIND": "Namespace",
+        "NAME": "default",
+        "STATUS": "Active",
+        "POD_NUMBER": 12
+    },
+    {
+        "KIND": "Namespace",
+        "NAME": "kube-node-lease",
+        "STATUS": "Active",
+        "POD_NUMBER": 0
+    },
+    {
+        "KIND": "Namespace",
+        "NAME": "kube-public",
+        "STATUS": "Active",
+        "POD_NUMBER": 0
+    },
+    {
+        "KIND": "Namespace",
+        "NAME": "kube-system",
+        "STATUS": "Active",
+        "POD_NUMBER": 5
+    }
+]

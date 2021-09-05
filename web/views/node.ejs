@@ -10,26 +10,24 @@
                     <div id="content" class="p-4 p-md-5 pt-5">
                         <div class="container-fluid">
                             <div class = "table-responsive">
-                                <table class="table w-auto center-block">
+                                <table class="table">
                                     <thead>
                                       <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">namespace</th>
-                                        <th scope="col">name</th>
-                                        <th scope="col">image</th>
-                                        <th scope="col">IP</th>
-                                        <th scope="col">NodeIP</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">STATUS</th>
+                                        <th scope="col">Version</th>
+                                        <th scope="col">OSImage</th>
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <% for (var i = 0; i < pod.length; i++) { %>
+                                      <% for (var i = 0; i < node.length; i++) { %>
                                       <tr>
                                         <th scope="row" class="col-1"><%= i + 1 %></th>
-                                        <td class="col-1"><%= pod[i].NAMESPACE %></td>
-                                        <td class="col-3"><%= pod[i].POD_NAME %></td>
-                                        <td class="col-3"><%= pod[i].POD_IMAGE %></td>
-                                        <td class="col-1"><%= pod[i].POD_IP %></td> 
-                                        <td class="col-3"><%= pod[i].NODE_IP %></td>
+                                        <td class="col-4"><%= node[i].NAME %></td>
+                                        <td class="col-2"><%= node[i].STATUS %></td>
+                                        <td class="col-3"><%= node[i].VERSION %></td>
+                                        <td class="col-3"><%= node[i].OSImage %></td> 
                                       </tr>
                                       <% } %>
                                     </tbody>
