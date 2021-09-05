@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingressname }}
+  #namespace: {{ .Values.frontendns }}
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-1
+spec:
+  rules:
+  - http:
+      paths:
+      - path: {{ .Values.ingresspathone }}
+        backend:
+          serviceName: {{ .Values.frontsvc }}
+          servicePort: 80
+      - path: {{ .Values.ingresspathtwo }}
+        backend:
+          serviceName: {{ .Values.logsvc }}
+          servicePort: 80
+      - path: {{ .Values.ingresspathany }}
+        backend:
+          serviceName: {{ .Values.frontsvc }}
+          servicePort: 80
+          

@@ -10,7 +10,7 @@ END
 K8s(){
 echo "Install kubectl"
 sudo curl --silent --location -o /usr/local/bin/kubectl \
-   https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+   https://amazon-eks.s3.us-west-2.amazonaws.com/1.20.4/2021-04-12/bin/linux/amd64/kubectl
 if [[ "${?}" -ne 0 ]]
 then
         echo "Kubectl Install Failed."
@@ -89,7 +89,6 @@ echo "[1] Install Amazon CLI2"
 echo "[2] Install EKS Cluster"
 echo "[3] Install Helm "
 echo "[4] Install Argocd "
-echo "[5] Install Ingress Controller"
 echo "${BAR}"
 echo -n "Please insert a key as you need = "
 read choice

@@ -1,0 +1,21 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ .Values.clusterrolepod }}
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get","list","watch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ .Values.clusterrolepod }}
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.saname }}
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: {{ .Values.clusterrolepod }}
+  apiGroup: rbac.authorization.k8s.io

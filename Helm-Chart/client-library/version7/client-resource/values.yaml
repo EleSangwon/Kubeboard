@@ -22,7 +22,7 @@ svcname: cr-service-resource
 # SVC Client 
 frontendname: main-frontend
 frontendimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-main-frontend:latest
-frontsvc: nginx-test
+frontsvc: main-frontend-svc
 frontendns: frontend
 # SVC Log Report
 logreportname: log-report

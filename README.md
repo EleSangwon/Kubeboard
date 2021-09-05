@@ -24,14 +24,18 @@ Prometheus & Grafana - 인프라 리소스 시각화
 AWS - 퍼블릭 클라우드 플랫폼
 - EC2 - 가상서버  EC2(EBS) - 영구 스토리지 EC2(ELB) - 로드 밸런서
 - S3 - 파일 스토리지
-- Route53 - 도메인 연결 및 라우팅 정책 할당
+- Route53 - 도메인 연결 및 라우팅 정책 할당 
+- AWS Certificate Manager : 도메인에 연결될 SSL 인증서 발급 
 - EKS : 관리형 쿠버네티스
+- Lambda : 서비리스 플랫폼
+- ECR : 이미지 레지스트리 
+- IAM : AWS 리소스 액세스 제어 
 
 CD - ArgoCD
 
 shell-script : 설치해야 하는 라이브러리 및 파일 자동화
 
-Frontend - React, html, css 
+Frontend - nodejs, ejs, html, css 
 ```
 
 ## 구성도
@@ -91,83 +95,84 @@ www.도메인주소/cluster-info
 ## Service Map
 ![서비스맵](https://user-images.githubusercontent.com/50174803/129410469-4cc9bbb2-eb4c-4190-86fd-39a972879d59.jpg)
 
-## 현재 진행도 21.08.27 기준
+## 현재 진행도 21.09.04 기준
 
 * 인프라 구성 - 팀장 이상원 
 ```
-1. 환경 세팅
-< 완료 >
-Cloud9 , IAM, EKS, CloudFormation , default-setting.sh
 
-< 미완 >
-advanced-setting.sh 
+[  완 료  ]
+
+1. AWS 환경 세팅 및 쉘 스크립트를 통한 자동화
+
+Cloud9 , IAM, EKS, CloudFormation , default-setting.sh
+advanced-setting.sh - alb-ingress.sh add
 
 
 2. 클라이언트 라이브러리
-< 완료 >
-Helm chart를 통한 리소스 배포
+- Helm chart 리소스 
 template(cronjob,deployment,service) , serviceaccount, clusterrole&binding, ingress , pv&pvc, value.yaml
 
-< 완료 >
-Helm chart에 ECR Private image에 대한 구성 필요 serviceaccount, cronjob spec 수정해야함.
+- ArgoCD를 이용한 배포 
 
-3. 로깅 아키텍처
-< 완료 >
-helm chart loki-stack 을 이용한 loki, promtail, grafana, prometheus 배포 완료
+- main-frontend 파드가 영구 볼륨에 저장된 값에 접근해서 프론트로 시각화 테스트 
 
-< 미완 >
-프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
+3. 이미지 레지스트리 설정
+AWS ECR 을 이미지 레지스트리로 사용하고, access 권한이 있을 때만 접근하도록 하기위해 Private registry 사용 
 
-3-1. 로깅 아키텍처 - 에러 로그 추출
-< helm 배포 완료 >
+4. 로깅 아키텍처
+
+- helm chart loki-stack 을 이용한 loki, promtail, grafana, prometheus 배포 
+
+4-1. 로깅 아키텍처 - 에러 로그 추출
+
 loki-stack helm chart에서 eventrouter 설정을 통해, 데몬셋으로 존재하는 promtail이 각 노드에서 
 kubectl get event 에 관한 정보를 저장할 수 있도록 설정 (default로는 event에 관련된 로그를 가져올 수 없다)
 
-< 쉘 스크립트 완료 >
-Shell Script 를 통해 특정 시간대, 특정 에러, 특정 네임스페이스에 해당되는 값을 S3로 보내도록 설정
+< 쉘 스크립트 >
+Shell Script 를 통해 특정 시간대, 특정 에러, 특정 네임스페이스에 해당되는 값을 AWS S3로 보내도록 설정
 이 쉘 스크립트는 cron으로 설정하여 2021년 xx월 x일의 n0 - n9 까지 해당되는 에러를 추출한다.
 ex) 2021.08.27:13:00 - 2021.08.27:13:09
     2021.08.27:13:10 - 2021.08.27:13:19
     ...
     ...
 
+< AWS Lambda 를 통한 전처리  >
+에러로그가 텍스트 파일 형태로, S3로 업로드 되면 텍스트 파일을 가져와 전처리를 Lambda 에서 하고
+전처리된 값을 새로운 S3 버킷으로 보내도록 설정함
+
+< 전처리된 값이 저장된 AWS S3에 접근 >
+에러로그를 추출했고, 그 로그를 전처리했고 전처리된 값을 AWS S3에 저장시켰다.
+이 값을 워커노드에 할당된 파드에 Spec에 IAM 역할을 추가한다. (IAM 역할은 S3에 access 해서 값 읽어오기)
+
+파드는 원래 노드의 IAM 역할을 받아오지만, 노드의 IAM에는 AWS S3에 access 할 수 있는 권한이 없으므로
+필요한 파드에 스펙에만 serviceaccount 에 annotation eks.amazonaws.com/role-arn 설정을 통해 접근하도록 한다.
+
+5. alb ingress : SSL
 < 완료 >
-로그를 S3로 가져와 전처리를 Lambda 에서 하고 전처리된 값을 새로운 S3 버킷으로 보내는 과정(테스트)은 완료했고,
-Lambda에서 로그 전처리 부분이 남았음.
+EKS에서, 여러 개의 서비스를 인그레스로 묶어서 사용하기 위해서 ALB Ingress Controller를 사용하였음.
+Route53으로 구매한 도메인을 AWS Certificate Manager 을 이용해 도메인에 대한 인증서를 발급받고,
+ingress 리소스 annotaion에 SSL 에 대한 설정 후, http -> https 연결 되도록 함. 
 
-4. 인프라 리소스 시각화
-< 미완  & 미정 >
-dashboard.json 생성
-Alert-rule 
+================================================================================================================
+================================================================================================================
+================================================================================================================
+
+[  미완  ]
+6. 인프라 리소스 시각화
+
+- dashboard.json 생성
+- Alert-rule 
 
 
-5. 부하 테스트
-< 미완 >
-수평적 파드 오토스케일링 (HPA) 를 적용해 시스템 부하상태에 따른 Pod Auto Scaling
-노드 오토스케일링
+7. 부하 테스트
 
+- 수평적 파드 오토스케일링 (HPA) 를 적용해 시스템 부하상태에 따른 Pod Auto Scaling
+- 노드 오토스케일링
 
-2021.09.02 까지,
-부하테스트 , advanced-setting.sh , 프론트 파드 테스트 
+8. 로그 리포트 파드 테스트
 
-```
-
-* 프론트 앤드 - 팀원 황서희
-```
-1. 클러스터 상태 시각화 웹페이지
-< 미완 >
-
-- prometheus, grafana 아이콘 추가 후 클릭 시, 새 탭이 켜지고 연결
-
-- UI / UX 적용
-
-- dropdown 화살표 만들기
-
-- 리스트 형태의 json에 대한 처리
-
-- 메인 페이지에 쿠버네티스 아이콘 추가
-
-- docker 이미지 
+- 프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
 
 ```
+
 ![KakaoTalk_20210823_214738587](https://user-images.githubusercontent.com/50174803/131030358-0fdd8006-f095-4944-b922-3f305eafa204.png)

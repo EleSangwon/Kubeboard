@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.firstsvc }}
+ # namespace: {{ .Values.frontendns }}
+spec:
+  selector:
+    app: {{ .Values.firstpage }}
+  ports:
+    - protocol: "TCP"
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer
