@@ -27,12 +27,15 @@ AWS - 퍼블릭 클라우드 플랫폼
 - Route53 - 도메인 연결 및 라우팅 정책 할당 
 - AWS Certificate Manager : 도메인에 연결될 SSL 인증서 발급 
 - EKS : 관리형 쿠버네티스
+- Lambda : 서비리스 플랫폼
+- ECR : 이미지 레지스트리 
+- IAM : AWS 리소스 액세스 제어 
 
 CD - ArgoCD
 
 shell-script : 설치해야 하는 라이브러리 및 파일 자동화
 
-Frontend - React, html, css 
+Frontend - nodejs, ejs, html, css 
 ```
 
 ## 구성도
