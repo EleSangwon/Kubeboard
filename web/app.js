@@ -22,17 +22,15 @@ app.get("/pod", info.podInfo);
 
 app.get("/service", info.serviceInfo);
 
+app.get("/namespace", info.nsInfo);
+
+app.get("/node", info.ndInfo);
+
+
 app.get("/logging", function (req, res) {
     res.render('logging.ejs');
 })
 
-app.get("/infra", function (req, res) {
-    res.render('infra.ejs');
-})
-
-app.get("/namespace", function (req, res) {
-    res.render('namespace.ejs');
-})
 
 app.listen(port, function() {
     console.log("server start at port 3000");
