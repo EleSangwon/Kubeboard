@@ -174,5 +174,8 @@ ingress 리소스 annotaion에 SSL 에 대한 설정 후, http -> https 연결 �
 - 프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
 
 ```
+## Main-Frontend 
+![메인프론트](https://user-images.githubusercontent.com/50174803/132130876-91ea9f9e-4c9c-4a4c-b107-d23d570efb1d.jpg)
 
-![KakaoTalk_20210823_214738587](https://user-images.githubusercontent.com/50174803/131030358-0fdd8006-f095-4944-b922-3f305eafa204.png)
+## Infra Resource monitoring
+![대시보드](https://user-images.githubusercontent.com/50174803/132130890-126bf251-f5f6-496d-b681-7c75c973d3af.jpg)
