@@ -1,116 +1,135 @@
-[{
-        "NAMESPACE": "default",
-        "POD_NAME": "cronjob-node-resource-1629534720-87kht",
+[
+    {
+        "NAMESPACE": "alpha",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/node_resource:latest",
         "POD_IP": "192.168.13.143",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-node-resource-1629534720-87kht"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-node-resource-1629534780-k6lj9",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/node_resource:latest",
         "POD_IP": "192.168.83.250",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-node-resource-1629534780-k6lj9"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-node-resource-1629534840-hqthx",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/node_resource:latest",
         "POD_IP": "192.168.76.229",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-node-resource-1629534840-hqthx"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-node-resource-1629534900-xq84p",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/node_resource:latest",
         "POD_IP": "192.168.7.240",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-node-resource-1629534900-xq84p"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-ns-resource-1629534720-4g25t",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/ns_resource:latest",
         "POD_IP": "192.168.76.229",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
-        "NAMESPACE": "default",
-        "POD_NAME": "cronjob-ns-resource-1629534780-ndz8v",
+        "POD_NAME": "cronjob-ns-resource-1629534720-4g25t"
+    },
+    {
+        "NAMESPACE": "gamma",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/ns_resource:latest",
         "POD_IP": "192.168.13.143",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
-        "NAMESPACE": "default",
-        "POD_NAME": "cronjob-ns-resource-1629534840-7b65f",
+        "POD_NAME": "cronjob-ns-resource-1629534780-ndz8v"
+    },
+    {
+        "NAMESPACE": "alpha",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/ns_resource:latest",
         "POD_IP": "192.168.13.143",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-ns-resource-1629534840-7b65f"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-ns-resource-1629534900-mltt7",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/ns_resource:latest",
         "POD_IP": "192.168.76.229",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
-        "NAMESPACE": "default",
-        "POD_NAME": "cronjob-pod-resource-1629534720-lfdxc",
+        "POD_NAME": "cronjob-ns-resource-1629534900-mltt7"
+    },
+    {
+        "NAMESPACE": "gamma",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/pod_resource:latest",
         "POD_IP": "192.168.86.125",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
-        "NAMESPACE": "default",
-        "POD_NAME": "cronjob-pod-resource-1629534780-x6br6",
+        "POD_NAME": "cronjob-pod-resource-1629534720-lfdxc"
+    },
+    {
+        "NAMESPACE": "beta",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/pod_resource:latest",
         "POD_IP": "192.168.86.125",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-pod-resource-1629534780-x6br6"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-pod-resource-1629534840-444js",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/pod_resource:latest",
         "POD_IP": "192.168.83.250",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-pod-resource-1629534840-444js"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-pod-resource-1629534900-c64sf",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/pod_resource:latest",
         "POD_IP": "192.168.5.230",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
-        "NAMESPACE": "default",
-        "POD_NAME": "cronjob-svc-resource-1629534720-2crkx",
+        "POD_NAME": "cronjob-pod-resource-1629534900-c64sf"
+    },
+    {
+        "NAMESPACE": "beta",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/service_resource:latest",
         "POD_IP": "192.168.7.240",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-svc-resource-1629534720-2crkx"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-svc-resource-1629534780-f4jvt",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/service_resource:latest",
         "POD_IP": "192.168.76.229",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-svc-resource-1629534780-f4jvt"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-svc-resource-1629534840-lr2qx",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/service_resource:latest",
         "POD_IP": "192.168.7.240",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-svc-resource-1629534840-lr2qx"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "cronjob-svc-resource-1629534900-b57ct",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/service_resource:latest",
         "POD_IP": "192.168.94.236",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "cronjob-svc-resource-1629534900-b57ct"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "log-report-689d9b9b44-kzg75",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "nginx",
         "POD_IP": "192.168.0.87",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
-        "NAMESPACE": "default",
-        "POD_NAME": "nginx-main-554986cc4b-8cz7b",
+        "POD_NAME": "log-report-689d9b9b44-kzg75"
+    },
+    {
+        "NAMESPACE": "asd",
+        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "nginx",
         "POD_IP": "192.168.9.31",
-        "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal"
-    }, {
+        "POD_NAME": "nginx-main-554986cc4b-8cz7b"
+    },
+    {
         "NAMESPACE": "default",
-        "POD_NAME": "nginx-test-76685b9dfb-5vzc9",
+        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "nginx",
         "POD_IP": "192.168.88.177",
-        "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal"
+        "POD_NAME": "nginx-test-76685b9dfb-5vzc9"
     }
 ]

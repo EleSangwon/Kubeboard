@@ -6,7 +6,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "ejs": "^3.1.6",
-    "os": "^0.1.2"
+    "os": "^0.1.2",
+    "sort-json-array": "^0.1.7"
   },
   "devDependencies": {
     "express": "^4.17.1"

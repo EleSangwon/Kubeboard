@@ -29,13 +29,19 @@ exports.nodeInfo = function (req, res) {
 exports.podInfo = function (req, res) {
 
     const fs = require('fs');
+    const sortJsonArray = require('sort-json-array');
 
     const podFile = fs.readFileSync('routes/pod_resource.json', 'utf-8').replace(/'/g, "");
-    const pod = JSON.parse(podFile);
+    var pod = JSON.parse(podFile);
 
+    pod = sortJsonArray(pod,'NAMESPACE');
+
+    let listOfUserGroups = [...new Set(pod.map(it => it.NAMESPACE))];
 
     res.render('pod.ejs', {
         pod : pod,
+        list: listOfUserGroups,
+        listLength : listOfUserGroups.length,
     });
 }
 
