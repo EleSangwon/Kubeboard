@@ -23,7 +23,7 @@ def main():
         item["POD_NUMBER"]=0
         new_list.append(item)
     
-    count = 20 # Pod 개수에 따라서 값 수정해야함.
+    count = 70 # Pod 개수에 따라서 값 수정해야함.
     for event in w.stream(v1.list_pod_for_all_namespaces, timeout_seconds=5):
         pod_ns = event['object'].metadata.namespace
         for item in new_list:
