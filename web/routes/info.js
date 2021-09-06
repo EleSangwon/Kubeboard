@@ -2,16 +2,16 @@ exports.nodeInfo = function (req, res) {
     const os = require("os");
     const fs = require('fs');
 
-    const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8').replace(/'/g, "");;
+    const nodeFile = fs.readFileSync('/client-resource/node_resource.json', 'utf-8').replace(/'/g, "");;
     const node = JSON.parse(nodeFile);
 
-    const podFile = fs.readFileSync('routes/pod_resource.json', 'utf-8').replace(/'/g, "");
+    const podFile = fs.readFileSync('/client-resource/pod_resource.json', 'utf-8').replace(/'/g, "");
     const pod = JSON.parse(podFile).length;
     
-    const serviceFile = fs.readFileSync('routes/service_resource.json', 'utf-8').replace(/'/g, "");;
+    const serviceFile = fs.readFileSync('/client-resource/service_resource.json', 'utf-8').replace(/'/g, "");;
     const service = JSON.parse(serviceFile).length;
 
-    const nsFile = fs.readFileSync('routes/ns_resource.json', 'utf-8').replace(/'/g, "");;
+    const nsFile = fs.readFileSync('/client-resource/ns_resource.json', 'utf-8').replace(/'/g, "");;
     const ns = JSON.parse(nsFile).length;
 
     res.render('home.ejs', {
@@ -31,7 +31,7 @@ exports.podInfo = function (req, res) {
     const fs = require('fs');
     const sortJsonArray = require('sort-json-array');
 
-    const podFile = fs.readFileSync('routes/pod_resource.json', 'utf-8').replace(/'/g, "");
+    const podFile = fs.readFileSync('/client-resource/pod_resource.json', 'utf-8').replace(/'/g, "");
     var pod = JSON.parse(podFile);
 
     pod = sortJsonArray(pod,'NAMESPACE');
@@ -49,7 +49,7 @@ exports.serviceInfo = function (req, res) {
 
     const fs = require('fs');
 
-    const serviceFile = fs.readFileSync('routes/service_resource.json', 'utf-8').replace(/'/g, "");;
+    const serviceFile = fs.readFileSync('/client-resource/service_resource.json', 'utf-8').replace(/'/g, "");;
     const service = JSON.parse(serviceFile);
 
 
@@ -62,7 +62,7 @@ exports.nsInfo = function (req, res) {
 
     const fs = require('fs');
 
-    const nsFile = fs.readFileSync('routes/ns_resource.json', 'utf-8').replace(/'/g, "");;
+    const nsFile = fs.readFileSync('/client-resource/ns_resource.json', 'utf-8').replace(/'/g, "");;
     const ns = JSON.parse(nsFile);
 
 
@@ -74,7 +74,7 @@ exports.nsInfo = function (req, res) {
 exports.ndInfo = function (req, res) {
     const fs = require('fs');
 
-    const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8').replace(/'/g, "");;
+    const nodeFile = fs.readFileSync('/client-resource/node_resource.json', 'utf-8').replace(/'/g, "");;
     const node = JSON.parse(nodeFile);
 
     res.render('node.ejs', {
