@@ -1,0 +1,25 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.cronjobpodlog }}
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+          - name: {{ .Values.volumename }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.volumeclaimName }}
+          restartPolicy: OnFailure
+          serviceAccountName: {{ .Values.saname }}
+          containers:
+          - name: {{ .Values.podlogname }}
+            image: {{ .Values.podlogimage }}
+            command: ["sh","-c"]
+            args: ["python pod.py > /client-resource/pod_resource_log.json"]
+            volumeMounts:
+            - name: {{ .Values.volumename }}
+              mountPath: {{ .Values.mountPath }}
+    
