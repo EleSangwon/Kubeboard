@@ -63,10 +63,10 @@ Helm()
 Argocd()
 {
     echo "Install Argocd"
-    kubectl create namespace argocd 2>> /dev/error.txt
-    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 2>> /dev/error.txt
+    kubectl create namespace argocd 2>> /home/ec2-user/environment/error.txt
+    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 2>> /home/ec2-user/environment/error.txt
     sleep 10
-    kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}' 2>> /dev/error.txt
+    kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}' 2>> /home/ec2-user/environment/error.txt
     sleep 3m
     echo "========== Check ==========="
     curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
