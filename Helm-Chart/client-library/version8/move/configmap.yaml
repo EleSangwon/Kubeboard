@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: efs-provisioner
 data:
-  file.system.id: fs-247beb04
+  file.system.id: fs-c0a437e0
   aws.region: ap-northeast-1
   provisioner.name: sangwon.com/aws-efs
   dns.name: ""

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Values.firstpage }}
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: 1 #{{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.frontendname }}
@@ -22,6 +22,10 @@ spec:
       containers:
       - name: {{ .Values.frontendname }}
         image: {{ .Values.frontendimage }}
+        resources:
+          requests:
+            cpu: {{ .Values.cpu }}
+            memory: {{ .Values.memory }}
         volumeMounts:
         - name: {{ .Values.volumename }}
           mountPath: {{ .Values.mountPath }}
