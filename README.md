@@ -34,7 +34,7 @@ AWS - 퍼블릭 클라우드 플랫폼
 CD - ArgoCD
 
 shell-script : 설치해야 하는 라이브러리 및 파일 자동화
-
+Python : Kubernetes Client Library 정보를 가져오기 위해 사용 & AWS Lambda에서 데이터 전처리
 Frontend - nodejs, ejs, html, css 
 ```
 
