@@ -10,10 +10,10 @@
                     <div id="content" class="p-4 p-md-5 pt-5">
                         <div class="container-fluid">
                           <% var k = 0; for (var i = 0; i < listLength; i++) { %>
-                            <a class="btn" data-bs-toggle="collapse" href="#collapseExample<%= i %>" role="button" aria-expanded="false"
+                            <a class="btn fw-bold" data-bs-toggle="collapse" href="#collapseExample<%= i %>" role="button" aria-expanded="false"
                             aria-controls="collapseExample<%= i %>"><%= list[i] %> </a>
                             <div class = "table-responsive collapse" id = "collapseExample<%= i %>">
-                                  <table class="table w-auto center-block">
+                                  <table class="table table-bordered fw-bolder w-auto center-block">
                                     <thead>
                                       <tr>
                                         <th scope="col">#</th>

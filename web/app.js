@@ -26,10 +26,7 @@ app.get("/namespace", info.nsInfo);
 
 app.get("/node", info.ndInfo);
 
-
-app.get("/logging", function (req, res) {
-    res.render('logging.ejs');
-})
+app.get("/logging", info.errLog);
 
 
 app.listen(port, function() {

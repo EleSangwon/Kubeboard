@@ -4,6 +4,7 @@
   "description": "website for docker service",
   "main": "index.js",
   "dependencies": {
+    "chart.js": "^3.5.1",
     "cors": "^2.8.5",
     "ejs": "^3.1.6",
     "os": "^0.1.2",

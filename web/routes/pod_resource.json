@@ -1,6 +1,6 @@
 [
     {
-        "NAMESPACE": "alpha",
+        "NAMESPACE": "a",
         "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/node_resource:latest",
         "POD_IP": "192.168.13.143",
@@ -35,14 +35,14 @@
         "POD_NAME": "cronjob-ns-resource-1629534720-4g25t"
     },
     {
-        "NAMESPACE": "gamma",
+        "NAMESPACE": "e",
         "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/ns_resource:latest",
         "POD_IP": "192.168.13.143",
         "POD_NAME": "cronjob-ns-resource-1629534780-ndz8v"
     },
     {
-        "NAMESPACE": "alpha",
+        "NAMESPACE": "a",
         "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/ns_resource:latest",
         "POD_IP": "192.168.13.143",
@@ -56,14 +56,14 @@
         "POD_NAME": "cronjob-ns-resource-1629534900-mltt7"
     },
     {
-        "NAMESPACE": "gamma",
+        "NAMESPACE": "e",
         "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/pod_resource:latest",
         "POD_IP": "192.168.86.125",
         "POD_NAME": "cronjob-pod-resource-1629534720-lfdxc"
     },
     {
-        "NAMESPACE": "beta",
+        "NAMESPACE": "b",
         "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/pod_resource:latest",
         "POD_IP": "192.168.86.125",
@@ -84,7 +84,7 @@
         "POD_NAME": "cronjob-pod-resource-1629534900-c64sf"
     },
     {
-        "NAMESPACE": "beta",
+        "NAMESPACE": "d",
         "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "public.ecr.aws/b2t5b6j7/service_resource:latest",
         "POD_IP": "192.168.7.240",
@@ -119,14 +119,14 @@
         "POD_NAME": "log-report-689d9b9b44-kzg75"
     },
     {
-        "NAMESPACE": "asd",
+        "NAMESPACE": "c",
         "NODE_IP": "ip-192-168-22-119.ap-northeast-1.compute.internal",
         "POD_IMAGE": "nginx",
         "POD_IP": "192.168.9.31",
         "POD_NAME": "nginx-main-554986cc4b-8cz7b"
     },
     {
-        "NAMESPACE": "default",
+        "NAMESPACE": "f",
         "NODE_IP": "ip-192-168-64-65.ap-northeast-1.compute.internal",
         "POD_IMAGE": "nginx",
         "POD_IP": "192.168.88.177",
