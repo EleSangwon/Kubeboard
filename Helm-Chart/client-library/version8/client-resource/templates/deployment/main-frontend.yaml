@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.frontendname }}
+  #namespace: {{ .Values.frontendns }}
+  labels:
+    app: {{ .Values.firstpage }}
+spec:
+  replicas: 1 #{{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.frontendname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.frontendname }}
+    spec:
+      volumes:
+      - name: {{ .Values.volumename }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.volumeclaimName }}
+      containers:
+      - name: {{ .Values.frontendname }}
+        image: {{ .Values.frontendimage }}
+        resources:
+          requests:
+            cpu: {{ .Values.cpu }}
+            memory: {{ .Values.memory }}
+        volumeMounts:
+        - name: {{ .Values.volumename }}
+          mountPath: {{ .Values.mountPath }}

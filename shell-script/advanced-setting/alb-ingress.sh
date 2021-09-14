@@ -11,6 +11,10 @@ export AWS_ZONE=$(curl -s http://169.254.169.254/latest/meta-data/placement/avai
 export AWS_REGION=${AWS_ZONE::-1}
 export AWS_DEFAULT_REGION=${AWS_REGION}
 export CLUSTER=`eksctl get cluster --region=${AWS_REGION} | awk '{print $1}' | tail -1`
+export RANDOM=$(cat /dev/urandom | tr -dc 'A-Z' | fold -w 7 | sed 1q)
+export POLICY=AWSLoadBalancerControllerIAMPolicy
+export IAMPOLICY=${POLICY}${RANDOM}
+export ARN=arn:aws:iam::238856124133:policy/${IAMPOLICY}
 
 albIngress()
 {
@@ -22,19 +26,17 @@ albIngress()
     curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
     
     aws iam create-policy \
-    --policy-name AWSLoadBalancerControllerIAMPolicy7 \
+    --policy-name ${IAMPOLICY} \
     --policy-document file://iam-policy.json
     
-}
-albIngress2()
-{
-eksctl create iamserviceaccount \
---cluster=${CLUSTER} \
---region=${AWS_REGION} \
---namespace=kube-system \
---name=aws-load-balancer-controller \
---attach-policy-arn= \
---approve
+    eksctl create iamserviceaccount \
+    --cluster=${CLUSTER} \
+    --region=${AWS_REGION} \
+    --namespace=kube-system \
+    --name=aws-load-balancer-controller \
+    --attach-policy-arn=${ARN} \
+    --approve
+
 }
 
 Deploy()
@@ -47,23 +49,27 @@ Test()
     kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/examples/2048/2048_full.yaml
     kubectl get ingress ingress-2048 -n game-2048
 }
+Delete()
+{
+    kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/examples/2048/2048_full.yaml
+}
 BAR="===================================="
 echo "${BAR}"
 echo "What do you want ? "
 echo "${BAR}"
-echo "[0] Setting Alb-ingress-1"
-echo "[1] Setting Alb-ingress-2"
-echo "[2] Deploy ALB"
-echo "[3] Test "
+echo "[0] Setting Alb-ingress"
+echo "[1] Deploy ALB"
+echo "[2] Test "
+echo "[3] Delete "
 echo "${BAR}"
 echo -n "Please insert a key as you need = "
 read choice
 echo "${BAR}"
 case $choice in
         0) albIngress;;
-        1) albIngress2;;
-        2) Deploy;;
-        3) Test;;
+        1) Deploy;;
+        2) Test;;
+        3) Delete;;
         *) echo "Bad choice"
                 exit 1
 esac

@@ -63,10 +63,10 @@ Helm()
 Argocd()
 {
     echo "Install Argocd"
-    kubectl create namespace argocd 2>> /dev/error.txt
-    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 2>> /dev/error.txt
+    kubectl create namespace argocd 2>> /home/ec2-user/environment/error.txt
+    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 2>> /home/ec2-user/environment/error.txt
     sleep 10
-    kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}' 2>> /dev/error.txt
+    kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}' 2>> /home/ec2-user/environment/error.txt
     sleep 3m
     echo "========== Check ==========="
     curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
@@ -79,7 +79,11 @@ Argocd()
     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
     
 }
-
+Metric()
+{
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    kubectl get deployment metrics-server -n kube-system
+}
 BAR="===================================="
 echo "${BAR}"
 echo "What do you want ? "
@@ -89,6 +93,7 @@ echo "[1] Install Amazon CLI2"
 echo "[2] Install EKS Cluster"
 echo "[3] Install Helm "
 echo "[4] Install Argocd "
+echo "[5] Install Metric Server"
 echo "${BAR}"
 echo -n "Please insert a key as you need = "
 read choice
@@ -99,6 +104,7 @@ case $choice in
         2) Iac;;
         3) Helm;;
         4) Argocd;;
+        5) Metric;;
         *) echo "Bad choice"
                 exit 1
 esac

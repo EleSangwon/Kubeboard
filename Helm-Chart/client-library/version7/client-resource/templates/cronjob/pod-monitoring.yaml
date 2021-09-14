@@ -1,0 +1,25 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.cronjobpodmonitor }}
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+          - name: {{ .Values.volumename }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.volumeclaimName }}
+          restartPolicy: OnFailure
+          serviceAccountName: {{ .Values.saname }}
+          containers:
+          - name: {{ .Values.podmonitorname }}
+            image: {{ .Values.podmonitorimage }}
+            command: ["sh","-c"]
+            args: ["python pod.py > /client-resource/pod_resource_monitoring.json"]
+            volumeMounts:
+            - name: {{ .Values.volumename }}
+              mountPath: {{ .Values.mountPath }}
+    

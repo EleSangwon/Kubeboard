@@ -22,7 +22,7 @@ Loki & Grafana & Promtail - 로깅 아키텍처
 Prometheus & Grafana - 인프라 리소스 시각화
 
 AWS - 퍼블릭 클라우드 플랫폼
-- EC2 - 가상서버  EC2(EBS) - 영구 스토리지 EC2(ELB) - 로드 밸런서
+- EC2 - 가상서버  EC2(EFS) - 파일시스템, EC2(ELB) - 로드 밸런서
 - S3 - 파일 스토리지
 - Route53 - 도메인 연결 및 라우팅 정책 할당 
 - AWS Certificate Manager : 도메인에 연결될 SSL 인증서 발급 
@@ -34,7 +34,7 @@ AWS - 퍼블릭 클라우드 플랫폼
 CD - ArgoCD
 
 shell-script : 설치해야 하는 라이브러리 및 파일 자동화
-
+Python : Kubernetes Client Library 정보를 가져오기 위해 사용 & AWS Lambda에서 데이터 전처리
 Frontend - nodejs, ejs, html, css 
 ```
 
@@ -95,7 +95,7 @@ www.도메인주소/cluster-info
 ## Service Map
 ![서비스맵](https://user-images.githubusercontent.com/50174803/129410469-4cc9bbb2-eb4c-4190-86fd-39a972879d59.jpg)
 
-## 현재 진행도 21.09.04 기준
+## 현재 진행도 21.09.11 기준
 
 * 인프라 구성 - 팀장 이상원 
 ```
@@ -104,19 +104,28 @@ www.도메인주소/cluster-info
 
 1. AWS 환경 세팅 및 쉘 스크립트를 통한 자동화
 
-Cloud9 , IAM, EKS, CloudFormation , default-setting.sh
-advanced-setting.sh - alb-ingress.sh add
+< AWS >
+Cloud9 , IAM, EKS, CloudFormation
+
+< Shell-Script >
+default-setting.sh,promtail.sh, alb-ingress.sh add
 
 
 2. 클라이언트 라이브러리
-- Helm chart 리소스 
-template(cronjob,deployment,service) , serviceaccount, clusterrole&binding, ingress , pv&pvc, value.yaml
 
-- ArgoCD를 이용한 배포 
+< Helm chart 리소스 > 
+template(cronjob,deployment,service,HPA,RBAC) , ingress , pv&pvc, value.yaml
 
-- main-frontend 파드가 영구 볼륨에 저장된 값에 접근해서 프론트로 시각화 테스트 
+< ArgoCD를 이용한 배포 >
+
+argocd를 통해 github repository 에 있는 helm-chart를 쿠버네티스에 배
+
+< Main-Frontend Pod Test >
+
+main-frontend 파드가 영구 볼륨에 저장된 값에 접근해서 프론트로 시각화 테스트 
 
 3. 이미지 레지스트리 설정
+
 AWS ECR 을 이미지 레지스트리로 사용하고, access 권한이 있을 때만 접근하도록 하기위해 Private registry 사용 
 
 4. 로깅 아키텍처
@@ -137,10 +146,12 @@ ex) 2021.08.27:13:00 - 2021.08.27:13:09
     ...
 
 < AWS Lambda 를 통한 전처리  >
+
 에러로그가 텍스트 파일 형태로, S3로 업로드 되면 텍스트 파일을 가져와 전처리를 Lambda 에서 하고
 전처리된 값을 새로운 S3 버킷으로 보내도록 설정함
 
 < 전처리된 값이 저장된 AWS S3에 접근 >
+
 에러로그를 추출했고, 그 로그를 전처리했고 전처리된 값을 AWS S3에 저장시켰다.
 이 값을 워커노드에 할당된 파드에 Spec에 IAM 역할을 추가한다. (IAM 역할은 S3에 access 해서 값 읽어오기)
 
@@ -148,28 +159,40 @@ ex) 2021.08.27:13:00 - 2021.08.27:13:09
 필요한 파드에 스펙에만 serviceaccount 에 annotation eks.amazonaws.com/role-arn 설정을 통해 접근하도록 한다.
 
 5. alb ingress : SSL
-< 완료 >
+
 EKS에서, 여러 개의 서비스를 인그레스로 묶어서 사용하기 위해서 ALB Ingress Controller를 사용하였음.
 Route53으로 구매한 도메인을 AWS Certificate Manager 을 이용해 도메인에 대한 인증서를 발급받고,
 ingress 리소스 annotaion에 SSL 에 대한 설정 후, http -> https 연결 되도록 함. 
 
-================================================================================================================
-================================================================================================================
+6. EBS Converto to EFS 
+
+워커노드 1개일 때는, 문제 없이 크론잡 리소스를 통해 가져온 정보를 영구볼륨 EBS에 잘 저장했다.
+그러나 워커노드가 2개이상 일때, 특별한 스케줄링이 없다면 리소스 사용량에 따라 각 워커노드에 크론잡 리소스가 하나씩
+할당이 된다. 워커노드가 3개인 경우, 프론트파드가 워커노드A에 할당되고 워커노드B와 워커노드C의 EBS 안에 필요한
+값이 저장되면 프론트 파드는 워커노드A의 EBS에서 값을 찾으므로 원하는 값을 얻을 수 없다.
+그래서 여러 개의 인스턴스가 하나의 파일 시스템을 사용하는 AWS EFS(NFS - 네트워크파일시스템과 동일한 서비스) 를 통해 워커노드를 여러 개 사용해도
+같은 곳에서 값을 가져올 수 있게끔 하였다. 
+
+7. 메인 프론트엔드 파드
+
+CSS,Font 수정 등을 제외하고 기능적인 부분 모두 구현
+
+8. HPA 수평적 파드 오토스케일링 적용
+
+트래픽에 따라 파드의 레플리카(복제본) 개수가 Scale 되도록 설정하였음. 
+트래픽이 증가하면 Scale Out 되어 레플리카 개수가 늘어나 트래픽을 분산시키고,
+트래픽이 줄어들면 Scale down 되어 일정 시간 이후 레플리카 개수가 줄어든다.
+
 ================================================================================================================
 
 [  미완  ]
-6. 인프라 리소스 시각화
+
+9. 인프라 리소스 시각화
 
 - dashboard.json 생성
 - Alert-rule 
 
-
-7. 부하 테스트
-
-- 수평적 파드 오토스케일링 (HPA) 를 적용해 시스템 부하상태에 따른 Pod Auto Scaling
-- 노드 오토스케일링
-
-8. 로그 리포트 파드 테스트
+10. 로그 리포트 파드 테스트
 
 - 프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
 

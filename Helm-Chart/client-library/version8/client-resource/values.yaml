@@ -9,11 +9,7 @@ volumeclaimName: hanium-2021-pvc
 mountPath: /client-resource
 ## Client Pod Resource
 podname: cr-pod-resource
-podimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource:latest
-podlogimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource-log-report:latest
-podlogname: cr-pod-resource-logreport
-podmonitorimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource-monitoring:latest
-podmonitorname: cr-pod-resource-monitoring
+podimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-resource-all:latest
 # Client Node Resource
 nodename: cr-node-resource
 nodeimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-node-resource:latest
