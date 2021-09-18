@@ -89,10 +89,8 @@ exports.ndInfo = function (req, res) {
 
 exports.errLog = function (req, res) {
     const fs = require('fs');
+    const fetch = require('node-fetch');
     const Chart = require('chart.js');
-
-    const errFile = fs.readFileSync('routes/error.json', 'utf-8');
-    const err = JSON.parse(errFile);
 
     var _html = `<script>ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
