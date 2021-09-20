@@ -25,6 +25,7 @@ jobs:
 
       - name: Build, tag, and push image to Amazon ECR
         env:
+          working-directory: ./web
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: action-main-frontend
           IMAGE_TAG: ${{ github.sha }}
