@@ -97,7 +97,7 @@ www.도메인주소/cluster-info
 ## Service Map
 ![서비스맵](https://user-images.githubusercontent.com/50174803/129410469-4cc9bbb2-eb4c-4190-86fd-39a972879d59.jpg)
 
-## 현재 진행도 21.09.11 기준
+## 현재 진행도 21.09.21 기준
 
 * 인프라 구성 - 팀장 이상원 
 ```
@@ -185,18 +185,23 @@ CSS,Font 수정 등을 제외하고 기능적인 부분 모두 구현
 트래픽이 증가하면 Scale Out 되어 레플리카 개수가 늘어나 트래픽을 분산시키고,
 트래픽이 줄어들면 Scale down 되어 일정 시간 이후 레플리카 개수가 줄어든다.
 
+9. Github Action 
+
+Main Frontend 가 있는 디렉토리에 파일이 수정되면, Github Action이 디렉토리 내에
+DockerFile을 통해 이미지를 빌드하고 AWS ECR 로 전송한다.
+
 ================================================================================================================
 
 [  미완  ]
 
-9. 인프라 리소스 시각화
+# Github Action + ArgoCD 완전 자동화 
 
-- dashboard.json 생성
-- Alert-rule 
+# Alert-rule - Slack
 
-10. 로그 리포트 파드 테스트
+# 로그 리포트 파드 테스트
 
 - 프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
+
 
 ```
 ## Main-Frontend 
