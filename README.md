@@ -202,7 +202,9 @@ DockerFile을 통해 이미지를 빌드하고 AWS ECR 로 전송한다.
 
 - 프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
 
+# 멀티 클러스터를 사용한 다양한 배포 전략 적용
 
+# 웹 애플리케이션 방화벽 설정 
 ```
 ## Main-Frontend 
 ![메인프론트](https://user-images.githubusercontent.com/50174803/132130876-91ea9f9e-4c9c-4a4c-b107-d23d570efb1d.jpg)
