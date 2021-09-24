@@ -13,31 +13,37 @@
 
 ## 기술스택
 ```
-Kubernetes - 컨테이너 오케스트레이션 : AWS EKS ,Python Client Library
-
-Helm - 쿠버네티스 패키지 매니저
-
-Docker - 컨테이너 이미지 , Public Repository AWS ECR ( 제한 때문에 dockerhub 사용 X ) 
-
-Loki & Grafana & Promtail - 로깅 아키텍처 
-
-Prometheus & Grafana - 인프라 리소스 시각화
-
-AWS - 퍼블릭 클라우드 플랫폼
-- EC2 - 가상서버  EC2(EFS) - 파일시스템, EC2(ELB) - 로드 밸런서
-- S3 - 파일 스토리지
-- Route53 - 도메인 연결 및 라우팅 정책 할당 
+[ AWS ]
+- EC2 : 가상서버  EC2(EFS) : 파일시스템, EC2(ELB) : 로드 밸런서
+- S3 : 파일 스토리지
+- Route53 : 인그레스 ELB URL과 도메인 연결 
 - AWS Certificate Manager : 도메인에 연결될 SSL 인증서 발급 
 - EKS : 관리형 쿠버네티스
-- Lambda : 서비리스 플랫폼
-- ECR : 이미지 레지스트리 
+- Lambda : 서버리스 플랫폼
+- ECR : 이미지 프라이빗 레지스트리 
 - IAM : AWS 리소스 액세스 제어 
 
+[ Kubernetes ]
+- Python Client Library : 쿠버네티스 클러스터 정보 python 으로 가져옴
+- Helm : 쿠버네티스 패키지 매니저
+- Docker : 컨테이너 이미지 
+
+[ Monitoring ]
+- Prometheus & Grafana : 인프라 리소스 시각화
+
+[ Logging ]
+- Loki & Grafana & Promtail : 로깅 아키텍처 
+
+[ CI/CD ]
+CI - Github Action
 CD - ArgoCD
 
-shell-script : 설치해야 하는 라이브러리 및 파일 자동화
-Python : Kubernetes Client Library 정보를 가져오기 위해 사용 & AWS Lambda에서 데이터 전처리
-Frontend - nodejs, ejs, html, css 
+[ Automation ]
+- shell-script : 설치해야 하는 라이브러리 및 파일 자동화
+- AWS CloudFormation : EKS 클러스터 구성
+
+[ Frontend ] 
+- Frontend : nodejs, ejs, html, css 
 ```
 
 ## 구성도
@@ -49,7 +55,7 @@ Frontend - nodejs, ejs, html, css
 
 ```
 1. python client library pod는 클러스터 내 정보를 조회하는 역할을 할당받는다
-2. 할당받은 역할을 통해 클러스터 내 필요한 정보를 가져와서 AWS EBS(영구스토리지) 에 저장한다
+2. 할당받은 역할을 통해 클러스터 내 필요한 정보를 가져와서 다수의 워커노드가 접근할 수 있는 AWS EFS(파일 시스템) 에 저장한다
 3. 저장된 값을 Frontend Pod가 접근해서 값을 가져온다. 
 ```
 
@@ -193,8 +199,6 @@ DockerFile을 통해 이미지를 빌드하고 AWS ECR 로 전송한다.
 ================================================================================================================
 
 [  미완  ]
-
-# Github Action + ArgoCD 완전 자동화 
 
 # Alert-rule - Slack
 
