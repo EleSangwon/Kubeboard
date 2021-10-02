@@ -2,8 +2,10 @@ name: Docker Image CI - Kubeboard Main Frontend
 
 on:
   push:
+    branches:
+      - main
     paths:
-      - '**.js'
+      - web/**
 jobs:
   build:
     runs-on: ubuntu-latest
