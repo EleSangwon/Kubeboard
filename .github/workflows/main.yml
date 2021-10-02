@@ -2,11 +2,8 @@ name: Docker Image CI - Kubeboard Main Frontend
 
 on:
   push:
-    branches: 
-    # Push Event on main branch
-      - main
-    # Push events to branches matchings ./web
-      - './web'
+    paths:
+      - '**.js'
 jobs:
   build:
     runs-on: ubuntu-latest
