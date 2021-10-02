@@ -2,12 +2,12 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 metadata:
-  name: 
-  region: 
-  version: ""
+  name: kubeboard
+  region: ap-northeast-1
+  version: "1.20"
 availabilityZones: [" "]
 managedNodeGroups:
 - name: node-group
   desiredCapacity: 1
-  instanceType: t3.small
+  instanceType: t3.medium
   
