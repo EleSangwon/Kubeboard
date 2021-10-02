@@ -6,7 +6,7 @@ on:
     # Push Event on main branch
       - main
     # Push events to branches matchings ./web
-      - ./web
+      - './web'
 jobs:
   build:
     runs-on: ubuntu-latest
