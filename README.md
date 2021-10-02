@@ -218,7 +218,8 @@ Custom으로 Rate에 대한 제한을 걸어 특정 횟수 이상에 액세스�
 
 ```
 ## Main-Frontend 
-![메인프론트](https://user-images.githubusercontent.com/50174803/132130876-91ea9f9e-4c9c-4a4c-b107-d23d570efb1d.jpg)
+![메인프론트]((https://user-images.githubusercontent.com/50174803/135711994-f7270887-4127-4380-bb3d-dffa86b838da.png)
+
 
 ## Infra Resource monitoring
 ![대시보드](https://user-images.githubusercontent.com/50174803/132130890-126bf251-f5f6-496d-b681-7c75c973d3af.jpg)
