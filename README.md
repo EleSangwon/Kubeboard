@@ -23,6 +23,8 @@
 - Lambda : 서버리스 플랫폼
 - ECR : 이미지 프라이빗 레지스트리 
 - IAM : AWS 리소스 액세스 제어 
+- EventBridge : 이벤트가 발생 시 Lambda 함수 실행 
+- SNS : 구독된 사용자에게 메세지 전송
 
 [ Kubernetes ]
 - Python Client Library : 쿠버네티스 클러스터 정보 python 으로 가져옴
@@ -204,6 +206,24 @@ Ingress.yaml 에서 annotation에 waf에 대한 설정 추가하여 사용했다
 Custom으로 Rate에 대한 제한을 걸어 특정 횟수 이상에 액세스를 차단하고, 한국에서만 접근하게끔 했고
 추가로 관리형 정책을 적용하였다.
 
+11. ECR Image Vulnerability Alarm ( 현재 진행 중)
+
+쿠버네티스의 워커노드는 EC2 인스턴스를 사용한다. 해당 인스턴스는 오토스케일링 그룹 안에 있기 때문에
+새로 생기거나 사라질 수 있다.
+서비스되는 애플리케이션은 워커노드에 스케줄 되므로 EC2인스턴스 그 자체 취약점을 찾기 보다 
+인스턴스에 스케줄되는 컨테이너에 대한 취약점을 찾아내는 것을 목표로 한다.
+
+단계
+
+1) 소스 코드 변경 사항이 생기면 Github Action이 이미지 빌드 후 ECR Registry 에 이미지 업로드
+2) ECR Registry에 이미지 업로드가 완료되면, 이 이벤트를 EventBridge가 받아서 Lambda 실행
+3) Lambda는 ECR Scanner 결과를 가져옴
+4) 이 결과 중에서 특정 수준에 해당되는 (취약성이 Crtical, high 등일 때) 취약성 정보에 대해 CloudWatch Alarm 적용
+5) Alarm 은 SNS 을 통해 등록한 이메일에 결과 전송
+
+< 고민 > 
+프론트로 CVE 취약점을 다 가져와서 Kubeboard 에서 확인가능하게 할 지.
+Alarm 을 통해 이메일로 전송만 할 지. 
 ================================================================================================================
 
 [  미완  ]
@@ -220,6 +240,8 @@ Custom으로 Rate에 대한 제한을 걸어 특정 횟수 이상에 액세스�
 ## Main-Frontend 
 ![image](https://user-images.githubusercontent.com/50174803/135712012-7e6c8bb8-81eb-4744-99c1-0de9f3345bb1.png)
 
+## ECR Image vulnerability alarm
+![image](https://user-images.githubusercontent.com/50174803/135750496-4661d3f1-a5e6-4dac-b8cf-e71eed4081f2.png)
 
 ## Infra Resource monitoring
 ![대시보드](https://user-images.githubusercontent.com/50174803/132130890-126bf251-f5f6-496d-b681-7c75c973d3af.jpg)
