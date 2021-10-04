@@ -240,6 +240,9 @@ Alarm 을 통해 이메일로 전송만 할 지.
 ## Main-Frontend 
 ![image](https://user-images.githubusercontent.com/50174803/135712012-7e6c8bb8-81eb-4744-99c1-0de9f3345bb1.png)
 
+## Log-Report
+![image](https://user-images.githubusercontent.com/50174803/135818538-a05e26bc-16bb-44f1-86be-94da76a579ca.png)
+
 ## ECR Image vulnerability alarm
 ![image](https://user-images.githubusercontent.com/50174803/135750496-4661d3f1-a5e6-4dac-b8cf-e71eed4081f2.png)
 
