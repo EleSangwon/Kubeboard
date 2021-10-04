@@ -102,9 +102,8 @@ www.도메인주소/Logging
 www.도메인주소/Infra
 www.도메인주소/cluster-info 
 ```
-
-## Service Map
-![서비스맵](https://user-images.githubusercontent.com/50174803/129410469-4cc9bbb2-eb4c-4190-86fd-39a972879d59.jpg)
+### 06. WAF (웹 애플리케이션 방화벽) 적용
+![image](https://user-images.githubusercontent.com/50174803/135824013-7e1597aa-959f-4dbc-bceb-cefb7215d22a.png)
 
 ## 현재 진행도 21.09.21 기준
 
