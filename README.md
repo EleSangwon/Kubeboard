@@ -8,34 +8,45 @@
 사용자가 애플리케이션에 대한 장애처리 대응을 수월하게 하도록 함.
 또한, 클러스터 리소스 정보를 확인하고 인프라 리소스 모니터링까지 가능하도록 함.
 ```
+## 1차 데모영상
+* https://youtu.be/HTrf0wJpMyE
 
 ## 기술스택
 ```
-Kubernetes - 컨테이너 오케스트레이션 : AWS EKS ,Python Client Library
-
-Helm - 쿠버네티스 패키지 매니저
-
-Docker - 컨테이너 이미지 , Public Repository AWS ECR ( 제한 때문에 dockerhub 사용 X ) 
-
-Loki & Grafana & Promtail - 로깅 아키텍처 
-
-Prometheus & Grafana - 인프라 리소스 시각화
-
-AWS - 퍼블릭 클라우드 플랫폼
-- EC2 - 가상서버  EC2(EFS) - 파일시스템, EC2(ELB) - 로드 밸런서
-- S3 - 파일 스토리지
-- Route53 - 도메인 연결 및 라우팅 정책 할당 
+[ AWS ]
+- EC2 : 가상서버  EC2(EFS) : 파일시스템, EC2(ELB) : 로드 밸런서
+- S3 : 파일 스토리지
+- Route53 : 인그레스 ELB URL과 도메인 연결 
+- WAF : 웹 애플리케이션 방화벽 
 - AWS Certificate Manager : 도메인에 연결될 SSL 인증서 발급 
 - EKS : 관리형 쿠버네티스
-- Lambda : 서비리스 플랫폼
-- ECR : 이미지 레지스트리 
+- Lambda : 서버리스 플랫폼
+- ECR : 이미지 프라이빗 레지스트리 
 - IAM : AWS 리소스 액세스 제어 
+- EventBridge : 이벤트가 발생 시 Lambda 함수 실행 
+- SNS : 구독된 사용자에게 메세지 전송
 
+[ Kubernetes ]
+- Python Client Library : 쿠버네티스 클러스터 정보 python 으로 가져옴
+- Helm : 쿠버네티스 패키지 매니저
+- Docker : 컨테이너 이미지 
+
+[ Monitoring ]
+- Prometheus & Grafana : 인프라 리소스 시각화
+
+[ Logging ]
+- Loki & Grafana & Promtail : 로깅 아키텍처 
+
+[ CI/CD ]
+CI - Github Action
 CD - ArgoCD
 
-shell-script : 설치해야 하는 라이브러리 및 파일 자동화
-Python : Kubernetes Client Library 정보를 가져오기 위해 사용 & AWS Lambda에서 데이터 전처리
-Frontend - nodejs, ejs, html, css 
+[ Automation ]
+- shell-script : 설치해야 하는 라이브러리 및 파일 자동화
+- AWS CloudFormation : EKS 클러스터 구성
+
+[ Frontend ] 
+- Frontend : nodejs, ejs, html, css 
 ```
 
 ## 구성도
@@ -47,7 +58,7 @@ Frontend - nodejs, ejs, html, css
 
 ```
 1. python client library pod는 클러스터 내 정보를 조회하는 역할을 할당받는다
-2. 할당받은 역할을 통해 클러스터 내 필요한 정보를 가져와서 AWS EBS(영구스토리지) 에 저장한다
+2. 할당받은 역할을 통해 클러스터 내 필요한 정보를 가져와서 다수의 워커노드가 접근할 수 있는 AWS EFS(파일 시스템) 에 저장한다
 3. 저장된 값을 Frontend Pod가 접근해서 값을 가져온다. 
 ```
 
@@ -91,11 +102,10 @@ www.도메인주소/Logging
 www.도메인주소/Infra
 www.도메인주소/cluster-info 
 ```
+### 06. WAF (웹 애플리케이션 방화벽) 적용
+![image](https://user-images.githubusercontent.com/50174803/135824013-7e1597aa-959f-4dbc-bceb-cefb7215d22a.png)
 
-## Service Map
-![서비스맵](https://user-images.githubusercontent.com/50174803/129410469-4cc9bbb2-eb4c-4190-86fd-39a972879d59.jpg)
-
-## 현재 진행도 21.09.11 기준
+## 현재 진행도 21.09.21 기준
 
 * 인프라 구성 - 팀장 이상원 
 ```
@@ -183,22 +193,57 @@ CSS,Font 수정 등을 제외하고 기능적인 부분 모두 구현
 트래픽이 증가하면 Scale Out 되어 레플리카 개수가 늘어나 트래픽을 분산시키고,
 트래픽이 줄어들면 Scale down 되어 일정 시간 이후 레플리카 개수가 줄어든다.
 
+9. Github Action 
+
+Main Frontend 가 있는 디렉토리에 파일이 수정되면, Github Action이 디렉토리 내에
+DockerFile을 통해 이미지를 빌드하고 AWS ECR 로 전송한다.
+
+10. AWS WAF
+
+AWS에서 제공해주는 웹 애플리케이션에 대한 방화벽 기능을 제공해주는 서비스로, ALB에 적용하였다.
+Ingress.yaml 에서 annotation에 waf에 대한 설정 추가하여 사용했다.
+Custom으로 Rate에 대한 제한을 걸어 특정 횟수 이상에 액세스를 차단하고, 한국에서만 접근하게끔 했고
+추가로 관리형 정책을 적용하였다.
+
+11. ECR Image Vulnerability Alarm ( 현재 진행 중)
+
+쿠버네티스의 워커노드는 EC2 인스턴스를 사용한다. 해당 인스턴스는 오토스케일링 그룹 안에 있기 때문에
+새로 생기거나 사라질 수 있다.
+서비스되는 애플리케이션은 워커노드에 스케줄 되므로 EC2인스턴스 그 자체 취약점을 찾기 보다 
+인스턴스에 스케줄되는 컨테이너에 대한 취약점을 찾아내는 것을 목표로 한다.
+
+단계
+
+1) 소스 코드 변경 사항이 생기면 Github Action이 이미지 빌드 후 ECR Registry 에 이미지 업로드
+2) ECR Registry에 이미지 업로드가 완료되면, 이 이벤트를 EventBridge가 받아서 Lambda 실행
+3) Lambda는 ECR Scanner 결과를 가져옴
+4) 이 결과 중에서 특정 수준에 해당되는 (취약성이 Crtical, high 등일 때) 취약성 정보에 대해 CloudWatch Alarm 적용
+5) Alarm 은 SNS 을 통해 등록한 이메일에 결과 전송
+
+< 고민 > 
+프론트로 CVE 취약점을 다 가져와서 Kubeboard 에서 확인가능하게 할 지.
+Alarm 을 통해 이메일로 전송만 할 지. 
 ================================================================================================================
 
 [  미완  ]
 
-9. 인프라 리소스 시각화
+# Alert-rule - Slack
 
-- dashboard.json 생성
-- Alert-rule 
-
-10. 로그 리포트 파드 테스트
+# 로그 리포트 파드 테스트
 
 - 프론트로부터, 웹 프론트엔드 이미지를 받아서 테스트 
 
+# 멀티 클러스터를 사용한 다양한 배포 전략 적용
+
 ```
 ## Main-Frontend 
-![메인프론트](https://user-images.githubusercontent.com/50174803/132130876-91ea9f9e-4c9c-4a4c-b107-d23d570efb1d.jpg)
+![image](https://user-images.githubusercontent.com/50174803/135819043-6bfa03c9-7b0b-47a2-9f43-14e4c2e0e690.png)
+
+## Log-Report
+![image](https://user-images.githubusercontent.com/50174803/135818538-a05e26bc-16bb-44f1-86be-94da76a579ca.png)
+
+## ECR Image vulnerability alarm
+![image](https://user-images.githubusercontent.com/50174803/135750496-4661d3f1-a5e6-4dac-b8cf-e71eed4081f2.png)
 
 ## Infra Resource monitoring
 ![대시보드](https://user-images.githubusercontent.com/50174803/132130890-126bf251-f5f6-496d-b681-7c75c973d3af.jpg)
