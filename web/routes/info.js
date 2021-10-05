@@ -1,131 +1,181 @@
 exports.nodeInfo = function (req, res) {
-    const os = require("os");
-    const fs = require('fs');
+  const os = require("os");
+  const fs = require("fs");
 
-    const nodeFile = fs.readFileSync('/client-resource/node_resource.json', 'utf-8').replace(/'/g, "");;
-    const node = JSON.parse(nodeFile);
+  const nodeFile = fs
+    .readFileSync("routes/node_resource.json", "utf-8")
+    .replace(/'/g, "");
+  const node = JSON.parse(nodeFile);
 
-    const podFile = fs.readFileSync('/client-resource/pod_resource.json', 'utf-8').replace(/'/g, "");
-    const pod = JSON.parse(podFile).length;
-    
-    const serviceFile = fs.readFileSync('/client-resource/service_resource.json', 'utf-8').replace(/'/g, "");;
-    const service = JSON.parse(serviceFile).length;
+  const podFile = fs
+    .readFileSync("routes/pod_resource.json", "utf-8")
+    .replace(/'/g, "");
+  const pod = JSON.parse(podFile).length;
 
-    const nsFile = fs.readFileSync('/client-resource/ns_resource.json', 'utf-8').replace(/'/g, "");;
-    const ns = JSON.parse(nsFile).length;
+  const serviceFile = fs
+    .readFileSync("routes/service_resource.json", "utf-8")
+    .replace(/'/g, "");
+  const service = JSON.parse(serviceFile).length;
 
-    res.render('home.ejs', {
-        osplatform: os.platform,
-        ostype: os.type,
-        osarch: os.arch,
-        node: node,
-        pod: JSON.parse(podFile).length,
-        service: JSON.parse(serviceFile).length,
-        ns: JSON.parse(nsFile).length,
-    });
-}
+  const nsFile = fs
+    .readFileSync("routes/ns_resource.json", "utf-8")
+    .replace(/'/g, "");
+  const ns = JSON.parse(nsFile).length;
 
+  res.render("home.ejs", {
+    osplatform: os.platform,
+    ostype: os.type,
+    osarch: os.arch,
+    node: node,
+    pod: JSON.parse(podFile).length,
+    service: JSON.parse(serviceFile).length,
+    ns: JSON.parse(nsFile).length,
+  });
+};
 
 exports.podInfo = function (req, res) {
+  const fs = require("fs");
+  const sortJsonArray = require("sort-json-array");
 
-    const fs = require('fs');
-    const sortJsonArray = require('sort-json-array');
+  const podFile = fs
+    .readFileSync("routes/pod_resource.json", "utf-8")
+    .replace(/'/g, "");
+  var pod = JSON.parse(podFile);
 
-    /*const podFile = fs.readFileSync('routes/pod_resource.json', 'utf-8').replace(/'/g, "");*/
-    const podFile = fs.readFileSync('/client-resource/pod_resource.json', 'utf-8').replace(/'/g, "");
-    var pod = JSON.parse(podFile);
+  pod = sortJsonArray(pod, "NAMESPACE");
 
-    pod = sortJsonArray(pod, 'NAMESPACE');
+  let listOfPodGroups = [...new Set(pod.map((it) => it.NAMESPACE))];
 
-    let listOfPodGroups = [...new Set(pod.map(it => it.NAMESPACE))];
-
-    res.render('pod.ejs', {
-        pod: pod,
-        list: listOfPodGroups,
-        listLength: listOfPodGroups.length,
-    });
-}
+  res.render("pod.ejs", {
+    pod: pod,
+    list: listOfPodGroups,
+    listLength: listOfPodGroups.length,
+  });
+};
 
 exports.serviceInfo = function (req, res) {
+  const fs = require("fs");
 
-    const fs = require('fs');
+  const serviceFile = fs
+    .readFileSync("routes/service_resource.json", "utf-8")
+    .replace(/'/g, "");
+  const service = JSON.parse(serviceFile);
 
-    /*const serviceFile = fs.readFileSync('routes/service_resource.json', 'utf-8').replace(/'/g, "");*/
-    const serviceFile = fs.readFileSync('/client-resource/service_resource.json', 'utf-8').replace(/'/g, "");
-    const service = JSON.parse(serviceFile);
-
-
-    res.render('service.ejs', {
-        service: service,
-    });
-}
+  res.render("service.ejs", {
+    service: service,
+  });
+};
 
 exports.nsInfo = function (req, res) {
+  const fs = require("fs");
 
-    const fs = require('fs');
+  const nsFile = fs
+    .readFileSync("routes/ns_resource.json", "utf-8")
+    .replace(/'/g, "");
 
-    /*const nsFile = fs.readFileSync('routes/ns_resource.json', 'utf-8').replace(/'/g, "");*/
-   const nsFile = fs.readFileSync('/client-resource/ns_resource.json', 'utf-8').replace(/'/g, "");
+  const ns = JSON.parse(nsFile);
 
-    const ns = JSON.parse(nsFile);
-
-
-    res.render('namespace.ejs', {
-        ns: ns,
-    });
-}
+  res.render("namespace.ejs", {
+    ns: ns,
+  });
+};
 
 exports.ndInfo = function (req, res) {
-    const fs = require('fs');
+  const fs = require("fs");
 
-    /*const nodeFile = fs.readFileSync('routes/node_resource.json', 'utf-8').replace(/'/g, "");*/
-    const nodeFile = fs.readFileSync('/client-resource/node_resource.json', 'utf-8').replace(/'/g, ""); 
-    const node = JSON.parse(nodeFile);
+  const nodeFile = fs
+    .readFileSync("routes/node_resource.json", "utf-8")
+    .replace(/'/g, "");
+  /*const nodeFile = fs.readFileSync('/client-resource/node_resource.json', 'utf-8').replace(/'/g, ""); */
+  const node = JSON.parse(nodeFile);
 
-    res.render('node.ejs', {
-        node: node,
-    });
-}
+  res.render("node.ejs", {
+    node: node,
+  });
+};
 
 exports.errLog = function (req, res) {
-    const fs = require('fs');
-    const Chart = require('chart.js');
+  const https = require("https");
+  const ndjson = require("ndjson");
+  const fs = require("fs");
 
-    const errFile = fs.readFileSync('routes/error.json', 'utf-8');
-    const err = JSON.parse(errFile);
+  const errorFile = fs.readFileSync("routes/error.json", "utf-8");
 
-    var _html = `<script>ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: [...new Set(err.map(it => it.NAMESPACE))],
-            datasets: [{
-                label: '# of Votes',
-                data: [Object.keys(err).length],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }],
-        },
-    }); </script>`
+  const error = JSON.parse(errorFile);
 
-    res.render('logging.ejs', {
-        errLength: JSON.parse(errFile).length,
-        error: err,
-        html: _html,
-    })
-}
+  var result = [];
+
+  const url =
+    "https://hanium-test-error-log.s3.ap-northeast-2.amazonaws.com/error.json";
+
+  let groupByNamespace = error.reduce(
+    (acc, it) => ({ ...acc, [it.NAMESPACE]: (acc[it.NAMESPACE] || 0) + 1 }),
+    {}
+  );
+
+  let groupByName = error.reduce(
+    (acc, it) => ({ ...acc, [it.NAME]: (acc[it.NAME] || 0) + 1 }),
+    {}
+  );
+
+  let groupByKind = error.reduce(
+    (acc, it) => ({ ...acc, [it.KIND]: (acc[it.KIND] || 0) + 1 }),
+    {}
+  );
+
+  let groupByTime = error.reduce(
+    (acc, it) => ({
+      ...acc,
+      [it.TIME.slice(0, 10)]: (acc[it.TIME.slice(0, 10)] || 0) + 1,
+    }),
+    {}
+  );
+
+  let groupByHost = error.reduce(
+    (acc, it) => ({ ...acc, [it.HOST]: (acc[it.HOST] || 0) + 1 }),
+    {}
+  );
+
+  /* https.get(url, (stream) => {
+        stream.pipe(ndjson.parse()).on("data", function (data) {
+            result.push(data);
+        }).on("end", () => {
+            let groupByNamespace = result.reduce((acc, it) =>
+                ({ ...acc, [it.NAMESPACE]: (acc[it.NAMESPACE] || 0) + 1 }),
+                {});
+            let groupByName = result.reduce((acc, it) =>
+                ({ ...acc, [it.NAME]: (acc[it.NAME] || 0) + 1 }),
+                {});
+
+            let groupByKind = result.reduce((acc, it) =>
+                ({ ...acc, [it.KIND]: (acc[it.KIND] || 0) + 1 }),
+                {});
+            res.render('logging.ejs', {
+                data: result,
+                namespace: groupByNamespace,
+                name: groupByName,
+                kind: groupByKind,
+            })
+        });
+    }); */
+
+  res.render("log-report/logging.ejs", {
+    data: error,
+    namespace: groupByNamespace,
+    name: groupByName,
+    kind: groupByKind,
+    time: groupByTime,
+    host: groupByHost,
+  });
+};
+
+exports.imgLog = function (req, res) {
+  const fs = require("fs");
+
+  const imgFile = fs.readFileSync("routes/image_log.json", "utf-8");
+  const img = JSON.parse(imgFile);
+
+  res.render("image_log/image.ejs", {
+    img: img,
+  });
+};
