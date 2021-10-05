@@ -1,159 +1,161 @@
 <%- include("partials/header"); -%>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript" src="chartjs-plugin-colorschemes.js"></script>
     <link rel="stylesheet" href="css/sidebar.css">
-    <script src="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-8/vendor/chart.js/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     </head>
 
     <body id="bootstrap-overrides">
         <main role="main">
-            <div class="wrapper d-flex justify-content-around h-auto">
+            <div class="wrapper d-flex h-auto">
                 <%- include("partials/sidebar"); -%>
                     <div id="content" class="my-5 ms-3">
-                        <div class="container-fluid me-5">
-                            <div class="row">
-                                <div class="col-lg-6 float-start overflow-auto card g-0 mb-5">
+                        <div class="container-fluid me-5 row">
+                            <div class="col-lg-6 overflow-auto card g-0 mb-5" style="height:30rem;">
+                                <% for (var i=0; i < data.length; i++) { %>
+                                    <div class="card-body">
+                                        <span class="card-title col-sm-3 float-start fw-bolder">
+                                            <%- JSON.stringify(data[i].TIME) %>
+                                        </span>
+                                        <span class="card-text col-sm-9 float-end align-items-stretch text-break">
+                                            <%- JSON.stringify(data[i]) %>
+                                        </span>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="col-lg-6 lh-1" style="height:30rem;">
+                                <div class="card text-center mb-5">
+                                    <div class="card-header d-flex">
+                                        <h5 class="fw-bolder my-auto">Total error logs</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="fw-bolder" style="font-size: 80px;">
+                                            <%= data.length %>
+                                                <h6 class="text-muted fw-lighter">count</h6>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card text-center d-flex justify-content-around">
+                                    <div class="card-header d-flex">
+                                        <h5 class="fw-bolder my-auto">Error count by containers</h5>
+                                    </div>
+                                    <div class="card-body d-flex text-break">
                                         <% for (var i=0; i < data.length; i++) { %>
-                                            <div class="card-body">
-                                                <span class="card-title col-sm-3 float-start fw-bolder">
-                                                    <%- JSON.stringify(data[i].TIME) %>
+                                                <span class="fw-bolder card-title" style="font-size: 80px;">
+                                                    <%- JSON.stringify(Object.values(host)[i]) %>
+                                                        <h6 class="text-muted fw-lighter card-text">
+                                                            <%- JSON.stringify(Object.getOwnPropertyNames(host)[i]) %>
+                                                        </h6>
                                                 </span>
-                                                <span class="card-text col-sm-9 float-end align-items-stretch text-break">
-                                                    <%- JSON.stringify(data[i]) %>
-                                                </span>
-                                            </div>
                                             <% } %>
                                     </div>
-                                    <div class="col-lg-6 lh-1">
-                                        <div class="card text-center mb-5">
-                                            <div class="card-header d-flex">
-                                                <h5 class="fw-bolder my-auto">Total error logs</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <span class="fw-bolder" style="font-size: 80px;">
-                                                    <%= data.length %>
-                                                        <h6 class="text-muted fw-lighter">count</h6>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="card text-center">
-                                            <div class="card-header d-flex">
-                                                <h5 class="fw-bolder my-auto">Error count by containers</h5>
-                                            </div>
-                                            <div class="card-body d-flex text-break">
-                                                <% for (var i=0; i < data.length; i++) { %>
-                                                    <span class="fw-bolder" style="font-size: 80px;">
-                                                        <%- JSON.stringify(Object.values(host)[i]) %>
-                                                            <h6 class="text-muted fw-lighter">
-                                                                <%- JSON.stringify(Object.getOwnPropertyNames(host)[i]) %>
-                                                            </h6>
-                                                    </span>
-                                                    <% } %>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header d-flex">
+                                        <h5 class="fw-bolder my-auto">NAMESPACE</h5>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="card">
-                                            <div class="card-header d-flex">
-                                                <h5 class="fw-bolder my-auto">NAMESPACE</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <canvas id="myChart"></canvas>
-                                                <script>ctx = document.getElementById('myChart').getContext('2d');
-                                                    var myChart = new Chart(ctx, {
-                                                        type: 'doughnut',
-                                                        data: {
-                                                            labels: <%- JSON.stringify(Object.getOwnPropertyNames(namespace)) %>,
-                                                            datasets: [{
-                                                                data: <%- JSON.stringify(Object.values(namespace)) %>,
-                                                                backgroundColor: ["red", "blue", "orange"],
-                                                            }],
-                                                        },
-                                                    })
-                                                </script>
-                                            </div>
-                                        </div>
+                                    <div class="card-body">
+                                        <canvas id="myChart" style="height:20rem;"></canvas>
+                                        <script>ctx = document.getElementById('myChart').getContext('2d');
+                                            var myChart = new Chart(ctx, {
+                                                type: 'doughnut',
+                                                data: {
+                                                    labels: <%- JSON.stringify(Object.getOwnPropertyNames(namespace)) %>,
+                                                    datasets: [{
+                                                        data: <%- JSON.stringify(Object.values(namespace)) %>,
+                                                        backgroundColor: 'peachpuff',
+                                                    }],
+                                                }, options : {
+                                                    responsive : false
+                                                }
+                                            })
+                                        </script>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="card">
-                                            <div class="card-header d-flex align-items-center">
-                                                <h5 class="fw-bolder my-auto">KIND</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <canvas id="myChart2"></canvas>
-                                                <script>ctx = document.getElementById('myChart2').getContext('2d');
-                                                    var myChart = new Chart(ctx, {
-                                                        type: 'doughnut',
-                                                        data: {
-                                                            labels: <%- JSON.stringify(Object.getOwnPropertyNames(kind)) %>,
-                                                            datasets: [{
-                                                                data: <%- JSON.stringify(Object.values(kind)) %>,
-                                                                backgroundColor: ["orange"],
-                                                            }],
-                                                        },
-                                                    });</script>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-5">
+                                <div class="card">
+                                    <div class="card-header d-flex align-items-center">
+                                        <h5 class="fw-bolder my-auto">KIND</h5>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="card">
-                                            <div class="card-header d-flex align-items-center">
-                                                <h5 class="fw-bolder my-auto">NAME</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <canvas id="myChart3"></canvas>
-                                                    <script>ctx = document.getElementById('myChart3').getContext('2d');
-                                                        var myChart = new Chart(ctx, {
-                                                    type: 'doughnut',
-                                                    data: {
-                                                        labels: <%- JSON.stringify(Object.getOwnPropertyNames(name)) %>,
-                                                        datasets: [{
-                                                            data: <%- JSON.stringify(Object.values(name)) %>,
-                                                            backgroundColor: 'rgb(75, 192, 192)',
-                                                        }],
-                                                    },
-                                                });</script>
-                                            </div>
-                                        </div>
+                                    <div class="card-body">
+                                        <canvas id="myChart2" style="height:20rem;"></canvas>
+                                        <script>ctx = document.getElementById('myChart2').getContext('2d');
+                                            var myChart = new Chart(ctx, {
+                                                type: 'doughnut',
+                                                data: {
+                                                    labels: <%- JSON.stringify(Object.getOwnPropertyNames(kind)) %>,
+                                                    datasets: [{
+                                                        data: <%- JSON.stringify(Object.values(kind)) %>,
+                                                        backgroundColor: ["navajowhite"],
+                                                    }],
+                                                }, options: {
+                                                    responsive: false,
+                                                }
+                                            });</script>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="card">
-                                            <div class="card-header d-flex align-items-center">
-                                                <h5 class="fw-bolder my-auto">KIND</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <canvas id="myChart4" class="align-middle" style="height:20rem; width:30rem"></canvas>
-                                                <script>ctx = document.getElementById('myChart4').getContext('2d');
-                                                    var myChart = new Chart(ctx, {
-                                                        type: 'bar',
-                                                        data: {
-                                                            labels: <%- JSON.stringify(Object.getOwnPropertyNames(time)) %>,
-                                                            datasets: [{
-                                                                label: 'Count',
-                                                                data: <%- JSON.stringify(Object.values(time)) %>,
-                                                                fill: true,
-                                                                backgroundColor: 'rgb(75, 192, 192)',
-                                                                tension: 0.1
-                                                            }],
-                                                        },
-                                                        options: {
-                                                            responsive: false,
-                                                            maintainAspectRatio: true,
-                                                            scales: {
-                                                                y: {
-                                                                    beginAtZero: true !important,
-                                                                }
-                                                            }
-                                                        },
-                                                    });
-                                                </script>
-                                            </div>
-                                        </div>
-                                    </div>                          
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card text-center">
+                                    <div class="card-header d-flex align-items-center">
+                                        <h5 class="fw-bolder my-auto">NAME</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="myChart3" style="height:20rem;"></canvas>
+                                        <script>ctx = document.getElementById('myChart3').getContext('2d');
+                                            var myChart = new Chart(ctx, {
+                                                type: 'doughnut',
+                                                data: {
+                                                    labels: <%- JSON.stringify(Object.getOwnPropertyNames(name)) %>,
+                                                    datasets: [{
+                                                        data: <%- JSON.stringify(Object.values(name)) %>,
+                                                        backgroundColor: 'navajowhite',
+                                                    }],
+                                                }, options : {
+                                                    responsive : false
+                                                }
+                                            });</script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header d-flex align-items-center">
+                                        <h5 class="fw-bolder my-auto">Date</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="myChart4" class="align-middle"
+                                            style="height:20rem"></canvas>
+                                        <script>ctx = document.getElementById('myChart4').getContext('2d');
+                                            var myChart = new Chart(ctx, {
+                                                type: 'bar',
+                                                data: {
+                                                    labels: <%- JSON.stringify(Object.getOwnPropertyNames(time)) %>,
+                                                    datasets: [{
+                                                        label: 'Count',
+                                                        data: <%- JSON.stringify(Object.values(time)) %>,
+                                                        fill: true,
+                                                        backgroundColor: 'navajowhite',
+                                                        tension: 0.1
+                                                    }],
+                                                },options: {
+                                                    responsive: false,
+                                                    maintainAspectRatio: true,
+                                                    scales: {
+                                                        y: {
+                                                            beginAtZero: true,
+                                                        }
+                                                    }
+                                                },
+                                            });
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                </div>
+                    </div>
+            </div>
         </main>
     </body>
 </html>
