@@ -1,6 +1,6 @@
 FROM node:16.8.0
 
-RUN /web/image_log
+RUN mkdir /web/image_log
 
 WORKDIR /web/image_log
 
