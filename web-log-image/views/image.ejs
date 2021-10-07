@@ -34,6 +34,12 @@
                                         <div class="card-body">
                                             <span class="card-title col-sm-3 float-start fw-bolder">
                                                 <%= img[i].name %>
+                                                <% for (var j = 0; j < img[i].attributes.length; j++) { %>
+                                                    <h6 class="text-muted" style="font-size: smaller;">
+                                                        <%= img[i].attributes[j].key %> : <%= img[i].attributes[j].value %>
+                                                        <br>
+                                                    </h6>
+                                                <% } %>
                                             </span>
                                             <span
                                                 class="card-text col-sm-8 float-end justify-content-around text-break">

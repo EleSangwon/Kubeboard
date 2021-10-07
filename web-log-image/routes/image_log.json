@@ -35,15 +35,15 @@
         },
         {
             "key": "package_name",
-            "value": "imagemagick"
+            "value": "imagck"
         },
         {
             "key": "CVSS2_VECTOR",
-            "value": "AV:N/AC:L/Au:N/C:N/I:N/A:C"
+            "value": "AV:N/Au:N/C:N/I:N/A:C"
         },
         {
             "key": "CVSS2_SCORE",
-            "value": "7.8"
+            "value": "7.4"
         }
     ]
 }]
