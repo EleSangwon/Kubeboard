@@ -1,0 +1,49 @@
+[{
+    "name": "CVE-2021-20312",
+    "description": "A flaw was found in ImageMagick in versions 7.0.11, where an integer overflow in WriteTHUMBNAILImage of coders/thumbnail.c may trigger undefined behavior via a crafted image file that is submitted by an attacker and processed by an application using ImageMagick. The highest threat from this vulnerability is to system availability.",
+    "uri": "https://security-tracker.debian.org/tracker/CVE-2021-20312",
+    "severity": "HIGH",
+    "attributes": [
+        {
+            "key": "package_version",
+            "value": "8:6.9.10.23+dfsg-2.1+deb10u1"
+        },
+        {
+            "key": "package_name",
+            "value": "imagemagick"
+        },
+        {
+            "key": "CVSS2_VECTOR",
+            "value": "AV:N/AC:L/Au:N/C:N/I:N/A:C"
+        },
+        {
+            "key": "CVSS2_SCORE",
+            "value": "7.8"
+        }
+    ]
+}
+,
+{
+    "name": "CVE-2021-20312",
+    "description": "A flaw was found in ImageMagick in versions 7.0.11, where an integer overflow in WriteTHUMBNAILImage of coders/thumbnail.c may trigger undefined behavior via a crafted image file that is submitted by an attacker and processed by an application using ImageMagick. The highest threat from this vulnerability is to system availability.",
+    "uri": "https://security-tracker.debian.org/tracker/CVE-2021-20312",
+    "severity": "HIGH",
+    "attributes": [
+        {
+            "key": "package_version",
+            "value": "8:6.9.10.23+dfsg-2.1+deb10u1"
+        },
+        {
+            "key": "package_name",
+            "value": "imagck"
+        },
+        {
+            "key": "CVSS2_VECTOR",
+            "value": "AV:N/Au:N/C:N/I:N/A:C"
+        },
+        {
+            "key": "CVSS2_SCORE",
+            "value": "7.4"
+        }
+    ]
+}]

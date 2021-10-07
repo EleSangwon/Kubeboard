@@ -1,15 +1,15 @@
 FROM node:16.8.0
 
- RUN mkdir /web
+RUN mkdir /web
 
- WORKDIR /web
+WORKDIR /web
 
- COPY  package*.json ./
+COPY  package*.json ./
 
- RUN npm install
- 
- COPY . .
+RUN npm install
 
- EXPOSE 3000
+COPY . .
 
- CMD ["node", "app.js"]
+EXPOSE 3000
+
+CMD ["node", "app.js"]
