@@ -12,6 +12,9 @@
 ## 1차 데모영상
 * https://youtu.be/HTrf0wJpMyE
 
+## 2차 데모영상 ver1
+* https://www.youtube.com/watch?v=GYFaa6d-Kew
+
 ## 기술스택
 ```
 [ AWS ]
@@ -109,7 +112,7 @@ www.도메인주소/cluster-info
 ### 07. WAF (웹 애플리케이션 방화벽) 적용한 전체 구성도 
 ![image](https://user-images.githubusercontent.com/50174803/135824013-7e1597aa-959f-4dbc-bceb-cefb7215d22a.png)
 
-## 현재 진행도 21.09.21 기준
+## 현재 진행도 21.10.12 기준 (95%) 
 
 * 인프라 구성 - 팀장 이상원 
 ```
