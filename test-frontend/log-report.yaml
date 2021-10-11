@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-report-dev
+  #namespace: {{ .Values.frontendns }}
+  labels:
+    app: log-report-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-report-dev
+  template:
+    metadata:
+      labels:
+        app: log-report-dev
+    spec:
+      volumes:
+      - name: hanium-2021-pv
+        persistentVolumeClaim:
+          claimName: hanium-2021-pvc
+      containers:
+      - name: log-report-container
+        image: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/action-log-report:latest
+        volumeMounts:
+        - name: hanium-2021-pv
+          mountPath: /client-resource

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-frontend 
+  #namespace: {{ .Values.frontendns }}
+  labels:
+    app: main-frontend 
+spec:
+  replicas: 1 #{{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: main-frontend 
+  template:
+    metadata:
+      labels:
+        app: main-frontend 
+    spec:
+      volumes:
+      - name: hanium-2021-pv
+        persistentVolumeClaim:
+          claimName: hanium-2021-pvc
+      containers:
+      - name: main-frontend
+        image: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/action-main-frontend:latest
+        volumeMounts:
+        - name: hanium-2021-pv
+          mountPath: /client-resource
