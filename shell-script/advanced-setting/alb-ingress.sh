@@ -41,6 +41,7 @@ albIngress()
 
 Deploy()
 {
+    helm repo add eks https://aws.github.io/eks-charts
     helm install aws-load-balancer-controller eks/aws-load-balancer-controller --set clusterName=${CLUSTER} --set region=${AWS_REGION} -n kube-system --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
 
 }
