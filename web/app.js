@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const cors = require("cors");
-const port = 3000;
+const port = 80;
 const info = require("./routes/info");
 
 app.set("view engine", "ejs");
