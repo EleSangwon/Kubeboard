@@ -20,8 +20,8 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Values.volumeclaimName }}
       containers:
-      - name: {{ .Values.frontendname }}
-        image: nginx
+      - name: {{ .Values.logreportname }}
+        image: {{ .Values.logreportimage }}
         volumeMounts:
         - name: {{ .Values.volumename }}
           mountPath: {{ .Values.mountPath }}

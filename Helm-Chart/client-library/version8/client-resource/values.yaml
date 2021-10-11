@@ -21,19 +21,24 @@ svcimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-svc-resource
 svcname: cr-service-resource
 # SVC Client 
 frontendname: main-frontend
-frontendimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-demo-frontend:latest
+frontendimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/action-main-frontend:latest
 frontsvc: main-frontend-svc
 frontendns: frontend
 # SVC Log Report
 logreportname: log-report
 logsvc: log-report-svc
+logreportimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/action-log-report:latest
 # SVC Main
 firstpage: main-frontend 
 firstsvc: main-frontend-svc
+# Image Vulnerability
+imagescanname: image-scanner
+imagescansvc: image-scan-svc
+imagescanimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/action-log-scanner:latest
 # Ingress
 ingressname: hanium-ingress
-ingresspathone: /cluster-info/
-ingresspathtwo: /log-report/
+ingresspathone: /logging/*
+ingresspathtwo: /vulnerability/*
 ingresspathany: /*
 # resource
 cpu: "100m"
