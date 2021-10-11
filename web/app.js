@@ -26,10 +26,6 @@ app.get("/namespace", info.nsInfo);
 
 app.get("/node", info.ndInfo);
 
-app.get("/logging", info.errLog);
-
-app.get("/vulnerability", info.imgLog);
-
 app.listen(port, function () {
   console.log("server start at port 3000");
 });
