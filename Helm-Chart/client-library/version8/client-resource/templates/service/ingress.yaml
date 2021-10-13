@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.ingressname }}
   #namespace: {{ .Values.frontendns }}
   annotations:
-    #alb.ingress.kubernetes.io/waf-acl-id: e34436d6-950a-4eef-a647-504f2999b051
+    alb.ingress.kubernetes.io/waf-acl-id: e34436d6-950a-4eef-a647-504f2999b051
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
