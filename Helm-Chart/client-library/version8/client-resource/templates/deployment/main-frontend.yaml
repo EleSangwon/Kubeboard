@@ -2,11 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.frontendname }}
-  #namespace: {{ .Values.frontendns }}
   labels:
     app: {{ .Values.firstpage }}
 spec:
-  replicas: 1 #{{ .Values.replicas }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.frontendname }}

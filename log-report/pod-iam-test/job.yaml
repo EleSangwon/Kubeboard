@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pod-s3-access-iam
+spec:
+  template:
+    spec:
+      serviceAccountName: pod-iam-test
+      containers:
+      - name: pod-s3-access-iam
+        image: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-pod-s3-access:latest
+      restartPolicy: Never

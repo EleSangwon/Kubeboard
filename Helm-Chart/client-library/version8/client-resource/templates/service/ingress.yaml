@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.ingressname }}
   #namespace: {{ .Values.frontendns }}
   annotations:
-    alb.ingress.kubernetes.io/waf-acl-id: e34436d6-950a-4eef-a647-504f2999b051
+    alb.ingress.kubernetes.io/waf-acl-id: fad72bba-ba71-48cd-9db9-708128507b0c
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
@@ -19,11 +19,11 @@ spec:
       paths:
       - path: {{ .Values.ingresspathone }}
         backend:
-          serviceName: {{ .Values.frontsvc }}
+          serviceName: {{ .Values.logsvc }}
           servicePort: 80
       - path: {{ .Values.ingresspathtwo }}
         backend:
-          serviceName: {{ .Values.logsvc }}
+          serviceName: {{ .Values.imagescansvc }}
           servicePort: 80
       - path: {{ .Values.ingresspathany }}
         backend:

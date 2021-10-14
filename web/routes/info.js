@@ -3,22 +3,22 @@ exports.nodeInfo = function (req, res) {
   const fs = require("fs");
 
   const nodeFile = fs
-    .readFileSync("routes/node_resource.json", "utf-8")
+    .readFileSync("/client-resource/node_resource.json", "utf-8")
     .replace(/'/g, "");
   const node = JSON.parse(nodeFile);
 
   const podFile = fs
-    .readFileSync("routes/pod_resource.json", "utf-8")
+    .readFileSync("/client-resource/pod_resource.json", "utf-8")
     .replace(/'/g, "");
   const pod = JSON.parse(podFile).length;
 
   const serviceFile = fs
-    .readFileSync("routes/service_resource.json", "utf-8")
+    .readFileSync("/client-resource/service_resource.json", "utf-8")
     .replace(/'/g, "");
   const service = JSON.parse(serviceFile).length;
 
   const nsFile = fs
-    .readFileSync("routes/ns_resource.json", "utf-8")
+    .readFileSync("/client-resource/ns_resource.json", "utf-8")
     .replace(/'/g, "");
   const ns = JSON.parse(nsFile).length;
 
@@ -38,7 +38,7 @@ exports.podInfo = function (req, res) {
   const sortJsonArray = require("sort-json-array");
 
   const podFile = fs
-    .readFileSync("routes/pod_resource.json", "utf-8")
+    .readFileSync("/client-resource/pod_resource.json", "utf-8")
     .replace(/'/g, "");
   var pod = JSON.parse(podFile);
 
@@ -57,7 +57,7 @@ exports.serviceInfo = function (req, res) {
   const fs = require("fs");
 
   const serviceFile = fs
-    .readFileSync("routes/service_resource.json", "utf-8")
+    .readFileSync("/client-resource/service_resource.json", "utf-8")
     .replace(/'/g, "");
   const service = JSON.parse(serviceFile);
 
@@ -70,7 +70,7 @@ exports.nsInfo = function (req, res) {
   const fs = require("fs");
 
   const nsFile = fs
-    .readFileSync("routes/ns_resource.json", "utf-8")
+    .readFileSync("/client-resource/ns_resource.json", "utf-8")
     .replace(/'/g, "");
 
   const ns = JSON.parse(nsFile);
@@ -84,7 +84,7 @@ exports.ndInfo = function (req, res) {
   const fs = require("fs");
 
   const nodeFile = fs
-    .readFileSync("routes/node_resource.json", "utf-8")
+    .readFileSync("/client-resource/node_resource.json", "utf-8")
     .replace(/'/g, "");
   /*const nodeFile = fs.readFileSync('/client-resource/node_resource.json', 'utf-8').replace(/'/g, ""); */
   const node = JSON.parse(nodeFile);

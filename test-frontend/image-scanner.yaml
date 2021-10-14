@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-scan
+  #namespace: {{ .Values.frontendns }}
+  labels:
+    app: image-scan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-scan
+  template:
+    metadata:
+      labels:
+        app: image-scan
+    spec:
+      volumes:
+      - name: hanium-2021-pv
+        persistentVolumeClaim:
+          claimName: hanium-2021-pvc
+      containers:
+      - name: image-scan
+        image: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/action-log-scanner:latest
+        volumeMounts:
+        - name: hanium-2021-pv
+          mountPath: /client-resource

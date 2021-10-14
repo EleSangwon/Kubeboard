@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: log-report-svc
+ # namespace: {{ .Values.frontendns }}
+spec:
+  selector:
+    app: log-report-dev
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3001
+  type: LoadBalancer

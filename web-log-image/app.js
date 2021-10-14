@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const cors = require("cors");
-const port = 3002;
+const port = 80;
 const info = require("./routes/info");
 
 app.set("view engine", "ejs");
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get("/vulnerability", info.imgLog);
+app.get("/vulnerability/", info.imgLog);
 
 app.listen(port, function () {
   console.log("server start at port 3002");
