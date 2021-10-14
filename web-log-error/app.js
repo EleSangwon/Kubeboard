@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get("/", info.errLog);
+app.get("/logging", info.errLog);
 
 app.listen(port, function () {
   console.log("server start at port 3001");
