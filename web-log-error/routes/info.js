@@ -3,7 +3,7 @@ exports.errLog = function (req, res) {
   const fs = require("fs");
   const ndjsonParser = require("ndjson-parse");
 
-  const article = fs.readFileSync("routes/error.txt").toString();
+  const article = fs.readFileSync("routes/log-test.txt").toString();
   const parsedArticle = ndjsonParser(article);
 
   let groupByNamespace = parsedArticle.reduce(
