@@ -248,5 +248,8 @@ Custom으로 Rate에 대한 제한을 걸어 특정 횟수 이상에 액세스�
 ## ECR Image vulnerability alarm
 ![image](https://user-images.githubusercontent.com/50174803/135750496-4661d3f1-a5e6-4dac-b8cf-e71eed4081f2.png)
 
+## Image vulnerability Frontend
+![image](https://user-images.githubusercontent.com/50174803/136382024-ab308611-a501-4c8d-a4f7-9459fe7d2850.png)
+
 ## Infra Resource monitoring
 ![대시보드](https://user-images.githubusercontent.com/50174803/132130890-126bf251-f5f6-496d-b681-7c75c973d3af.jpg)
