@@ -5,7 +5,7 @@ import uuid
 
 def Find_ns(str):
     F_ns = str.find('namespace')+14
-    F_selflink = str.find('selfLink')-5
+    F_selflink = str.find('uid')-5
     ns = str[F_ns:F_selflink]
     return ns
 
@@ -41,16 +41,22 @@ def Find_time(str,len):
 def Find_value(str,len):
     # NAMESPACE
     Find_ns(str)
+    print(Find_ns(str))
     # KIND
     Find_kind(str)
+    print(Find_kind(str))
     # NAME
     Find_name(str)
+    print(Find_name(str))
     # MESSAGE
     Find_message(str)
+    print(Find_message(str))
     # HOST
     Find_host(str)
+    print(Find_host(str))
     # TIME
     Find_time(str,len)
+    print(Find_time(str,len))
     # Exception 
     F_ns = str.find('namespace') + 14
     if F_ns < 100:
