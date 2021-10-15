@@ -10,15 +10,15 @@ t=T
 c=:
 time=$(date +%Y-%m-%d)$t$(date +%H)${c}$(date +%M)
 Time=`echo ${time:0:-1}`
-#echo "${Time}"
+echo "${Time}"
 # 2. Get the number of promtail daemonsets
-daemonset=`kubectl get pods | grep promtail | wc -l`
+daemonset=`kubectl -n monitoring get pods | grep promtail | wc -l`
 # 3. Repeat the number of times
 for i in $(seq 1 ${daemonset}); do
   # List the names of promtail pods
-  prom=`kubectl get pods | grep promtail | awk '{print $1}' | head -$i | tail -1`
+  prom=`kubectl -n monitoring get pods | grep promtail | awk '{print $1}' | head -$i | tail -1`
   #echo "${prom}"
-  pod=`kubectl exec -it ${prom} -- ls /var/log/pods | grep eventrouter`
+  pod=`kubectl exec -it ${prom} -n monitoring -- ls /var/log/pods | grep eventrouter`
   val=`echo $?`
   # 4. If the promtail Pod has an eventrouter, and then save that Pod
   if [ "${val}" -eq 0 ]; then
@@ -37,17 +37,17 @@ echo ${anv}
 
 # 6. Number of Pods per Specified Time
 #cnt=`kubectl exec -it dev-promtail-kq74v -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-n799c_a190eb8e-aa94-4fce-a3f3-63679139adc4/kube-eventrouter/0.log | grep problem-app | grep error | wc -l`
-cnt=`kubectl exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-ktxgz_0e74a342-706f-4358-9e13-47cf43ba7958/kube-eventrouter/0.log | grep problem-app | grep error |  wc -l`  ##grep ${Time} | wc -l`
-#echo "${cnt}"
+cnt=`kubectl -n monitoring exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-l6n5d_44d7b20a-1563-4460-b147-81ff4cef3906/kube-eventrouter/0.log | grep problem-app | grep error |  wc -l`  ##grep ${Time} | wc -l`
+echo "${cnt}"
 #echo "Number "
 # 7. Save log for the filtered period in json format
 for i in $(seq 1 ${cnt}); do
   #contents=`kubectl exec -it dev-promtail-kq74v -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-n799c_a190eb8e-aa94-4fce-a3f3-63679139adc4/kube-eventrouter/0.log | grep problem-app | grep error | head -$i | tail -1 >>log.txt`
-  contents=`kubectl exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-ktxgz_0e74a342-706f-4358-9e13-47cf43ba7958/kube-eventrouter/0.log | grep problem-app | grep error | head -$i | tail -1 >>log.json`  #grep ${Time} | head -$i | tail -1 >>log.json`
+  contents=`kubectl -n monitoring exec -it ${ans} -- cat /var/log/pods/kube-system_eventrouter-5874bd6747-l6n5d_44d7b20a-1563-4460-b147-81ff4cef3906/kube-eventrouter/0.log | grep problem-app | grep error | head -$i | tail -1 >>log.txt`  #grep ${Time} | head -$i | tail -1 >>log.json`
   echo "${contents}"
 done
 # 8. Log to s3 bucket
-aws s3 cp log.json s3://hanium-dev-loki 2> /home/ec2-user/environment/error-log/error.txt
+aws s3 cp log.txt s3://kubeboard-log-report 2> /home/ec2-user/environment/error.txt
 val=`echo $?`
 if [ "${val}" -eq 0 ]; then
   echo "Upload Success log file to S3 bucket."
@@ -56,5 +56,5 @@ else
   exit 1
 fi
 # 9. Log file remove
-rm log.json
+rm log.txt
 exit 0
