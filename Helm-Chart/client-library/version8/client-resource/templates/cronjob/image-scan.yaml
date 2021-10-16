@@ -1,0 +1,25 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.imagescanjob }}
+spec:
+  schedule: "*/3 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+          - name: {{ .Values.volumename }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.volumeclaimName }}
+          serviceAccountName: {{ .Values.sapodiam }}
+          restartPolicy: OnFailure
+          containers:
+          - name: {{ .Values.imagescanjob }}
+            image: {{ .Values.imagescannerimage }}
+            command: ["sh","-c"]
+            args: ["python image-scanner.py > /client-resource/image-scanner.txt"]
+            volumeMounts:
+            - name: {{ .Values.volumename }}
+              mountPath: {{ .Values.mountPath }}
+    

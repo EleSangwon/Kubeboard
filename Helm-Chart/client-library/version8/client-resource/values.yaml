@@ -23,7 +23,9 @@ svcname: cr-service-resource
 # Log Report CronJob Resource
 logreportjob: log-report
 logerrorimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-cronjob-log-report:latest
-
+# Image Vulnerability CronJob Resource
+imagescanjob: image-scanner
+imagescannerimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/private-cronjob-image-scanner:latest
 # SVC Client 
 frontendname: main-frontend
 frontendimage: 238856124133.dkr.ecr.ap-northeast-1.amazonaws.com/action-main-frontend:latest
