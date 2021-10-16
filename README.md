@@ -1,6 +1,6 @@
 # Kubeboard
 
-## 프로젝트 시작 21.07.06 ~ 
+## 프로젝트 시작 21.07.06 ~ 21.10.17
 
 ## 프로젝트 내용
 ```
@@ -9,11 +9,8 @@
 또한, 클러스터 리소스 정보를 확인하고 인프라 리소스 모니터링까지 가능하도록 합니다.
 마지막으로 컨테이너 이미지를 스캐닝하여 보안취약점을 시각화하고 알람을 제공합니다.
 ```
-## 1차 데모영상
-* https://youtu.be/HTrf0wJpMyE
-
-## 2차 데모영상 ver1
-* https://www.youtube.com/watch?v=GYFaa6d-Kew
+## Kubeboard Final Demo
+* https://youtu.be/GKLRekvikJs
 
 ## 기술스택
 ```
@@ -112,7 +109,7 @@ www.도메인주소/cluster-info
 ### 07. WAF (웹 애플리케이션 방화벽) 적용한 전체 구성도 
 ![image](https://user-images.githubusercontent.com/50174803/135824013-7e1597aa-959f-4dbc-bceb-cefb7215d22a.png)
 
-## 현재 진행도 21.10.12 기준 (95%) 
+## 현재 진행도 21.10.17 기준 (100%) 
 
 * 인프라 구성 - 팀장 이상원 
 ```
