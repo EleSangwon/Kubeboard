@@ -209,7 +209,7 @@ Ingress.yaml 에서 annotation에 waf에 대한 설정 추가하여 사용했다
 Custom으로 Rate에 대한 제한을 걸어 특정 횟수 이상에 액세스를 차단하고, 한국에서만 접근하게끔 했고
 추가로 관리형 정책을 적용하였다.
 
-11. ECR Image Vulnerability Alarm ( 현재 진행 중)
+11. ECR Image Vulnerability Alarm
 
 쿠버네티스의 워커노드는 EC2 인스턴스를 사용한다. 해당 인스턴스는 오토스케일링 그룹 안에 있기 때문에
 새로 생기거나 사라질 수 있다.
@@ -226,13 +226,13 @@ Custom으로 Rate에 대한 제한을 걸어 특정 횟수 이상에 액세스�
 6) 또한 특정 수준에 해당되는 (취약성이 Crtical, high 등일 때) 취약성 정보를 S3로 보낸다.
 7) S3에 저장된 정보는 이미지 취약점을 시각화하는 파드가 접근해서 프론트로 시각화한다.
 
-12. 프론트앤드 테스트
+12. 프론트앤드 테스트 완료
 
-- Main frontend 모두 완료
+- Main frontend 
 
-- log report frontend 테스트 & 부하분산 & 인그레스 적용 완료 / S3에서 가져온 값으로 동기화(아직 못함)
+- log report frontend
 
-- image vulnerability frotend 테스트 & 부하분산 & 인그레스 적용 완료 / S3에서 가져온 값으로 동기화(아직 못함)
+- image vulnerability frotend 
 
  
 ================================================================================================================
