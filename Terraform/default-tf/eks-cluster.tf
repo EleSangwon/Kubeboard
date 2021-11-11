@@ -1,31 +1,38 @@
-data "aws_eks_cluster" "eks" {
-  name = module.eks.cluster_id
-}
-
-data "aws_eks_cluster_auth" "eks" {
-  name = module.eks.cluster_id
-}
-
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.eks.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.eks.token
-}
-
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  vpc_id = module.vpc.name
+  cluster_name    = local.cluster_name
   cluster_version = "1.21"
-  cluster_name    = "bolt-cluster"
-  subnets         = [ for zone in module.vpc.private_subnets: zone ]
+  subnets         = module.vpc.private_subnets
+
+  tags = {
+    Environment = "training"
+    GithubRepo  = "terraform-aws-eks"
+    GithubOrg   = "terraform-aws-modules"
+  }
+
+  vpc_id = module.vpc.vpc_id
+
+  workers_group_defaults = {
+    root_volume_type = "gp2"
+  }
 
   worker_groups = [
     {
-      instance_type = "t2.medium"
-      asg_max_size  = 5
-      asg_min_size  = 5
-      asg_desired_size  = 5
-      
+      name                          = "worker-group-1"
+      instance_type                 = "t2.medium"
+      additional_userdata           = "echo foo bar"
+      asg_desired_capacity          = 2
+      asg_max_size=4
+      asg_min_size=2
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
     }
   ]
+}
+
+data "aws_eks_cluster" "cluster" {
+  name = module.eks.cluster_id
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = module.eks.cluster_id
 }
